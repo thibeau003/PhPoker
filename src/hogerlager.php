@@ -8,7 +8,7 @@
     <title>Hoger Lager</title>
 </head>
 
-<body class="bg-slate-700" >
+<body class="bg-slate-700">
     <?php
     include "./tailwind.php";
     include "./header.php";

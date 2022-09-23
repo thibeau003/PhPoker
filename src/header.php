@@ -10,7 +10,7 @@ require_once "tailwind.php";
                 <span class="self-center text-xl font-bold whitespace-nowrap text-white">PhPoker</span>
             </a>
             <div class="flex items-center lg:order-2">
-                <a href="./account/login.php" class="text-white font-semibold rounded-lg px-4 lg:px-5 py-1 lg:py-1.5 mr-1 focus:outline-none">Login</a>
+                <a href="./login.php" class="text-white font-semibold rounded-lg px-4 lg:px-5 py-1 lg:py-1.5 mr-1 focus:outline-none">Login</a>
                 <a href="#" class="text-white font-semibold rounded-lg px-4 lg:px-5 py-1 lg:py-1.5 mr-1 focus:outline-none">Register</a>
 
                 <button data-collapse-toggle="mobile-menu-2" type="button" class="inline-flex items-center p-2 ml-1 text-white rounded-lg lg:hidden">

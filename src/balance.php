@@ -10,9 +10,9 @@
 
 <body class="bg-slate-700">
     <?php
-        include "./header.php";
+    include "./header.php";
 
-        
+
     ?>
 </body>
 

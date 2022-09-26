@@ -20,12 +20,12 @@
         <div class="flex flex-row">
             <a href="" class="w-1/2">
                 <div class="bg-slate-800 rounded-xl mr-8 w-full pb-4">
-                    <p class="text-white pl-6 pt-4 text-lg font-semibold">Naam Game</p>
+                    <p class="text-white pl-6 pt-4 text-lg font-semibold">Game Name</p>
                 </div>
             </a>
             <a href="" class="w-1/2">
                 <div class="bg-slate-800 rounded-xl w-full pb-4">
-                    <p class="text-white pl-6 pt-4 text-lg font-semibold">Naam Game</p>
+                    <p class="text-white pl-6 pt-4 text-lg font-semibold">Game Name</p>
                 </div>
             </a>
         </div>

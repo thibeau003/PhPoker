@@ -20,7 +20,7 @@
         print "Error record delete " . $mysqli->error;
     }
     $mysqli->close();
-    print "<br><a href='adminGebruikersPaneel.php'> go back to the list of users</a>";
+    print "<br><a href='./'> go back to the list of users</a>";
     ?>
 </body>
 

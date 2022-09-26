@@ -13,17 +13,21 @@
     include "./tailwind.php";
     include "./header.php";
     include "./connect.php";
-
-    if (isset($_POST['higher'])) {
-    }
-    if (isset($_POST['lower'])) {
-    }
-
-    // Bet
-    echo '
-        <input type="number" name="bet" max="' . $_SESSION['user']['balance'] . '">
-    ';
     ?>
+    <div class="pt-20">
+        <?php
+        if (isset($_POST['higher'])) {
+        }
+        if (isset($_POST['lower'])) {
+        }
+
+        // Bet
+        echo '
+            <input type="number" name="bet" max="' . $_SESSION['user']['balance'] . '">
+            <p>Balance: ' . $_SESSION['user']['balance'] . '</p>
+        ';
+        ?>
+    </div>
 </body>
 
 </html>

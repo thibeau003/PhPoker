@@ -3,6 +3,8 @@
 
     require_once "tailwind.php";
     
+    // $_SESSION['user'] = Array("username" => "Warre", "balance" => "1000");
+
     if(isset($_SESSION["user"])){
         $user = $_SESSION["user"];
 
@@ -20,14 +22,16 @@
                         </a>
                         <div class='flex items-center lg:order-2'>
                             <div class='bg-slate-900 rounded-full mr-6'>
-                                <p class='text-left text-white pl-4 pr-12 py-2'>$". $balance ."</p>
+                                <a href='./balance.php'>
+                                    <p class='text-left text-white pl-4 pr-12 py-2'>$". $balance ."</p>
+                                </a>
                             </div>
 
                             <button type='button' onclick='handleAccountMenu()' class='aspect-square flex mr-3 rounded-full md:mr-0 bg-slate-900 text-white' id='user-menu-button' aria-expanded='false' data-dropdown-toggle='user-dropdown' data-dropdown-placement='bottom'>
                                 <span class='p-2'>". $first2Characters ."</span>
                             </button>
-
-                            <div class='fixed w-auto mt-36 -ml-6 float-right'>
+      
+                            <div class='absolute w-auto top-14 ml-32 float-right'>
                                 <div class='hidden z-50 mt-2 text-white list-none bg-slate-800 rounded divide-y divide-slate-900 shadow' id='user-dropdown'>
                                     <ul class='py-1' aria-labelledby='user-menu-button'
                                         <li>
@@ -38,7 +42,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div>                  
                 
                             <button data-collapse-toggle='mobile-menu-2' type='button' class='inline-flex items-center p-2 ml-1 text-white rounded-lg lg:hidden'>
                                 <svg class='w-6 h-6' fill='currentColor' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'>
@@ -47,7 +51,7 @@
                                 <svg class='hidden w-6 h-6' fill='currentColor' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'>
                                     <path fill-rule='evenodd' d='M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z' clip-rule='evenodd'></path>
                                 </svg>
-                            </button>
+                            </button>    
                         </div>
                         <div class='hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1' id='mobile-menu-2'>
                             <ul class='flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0'>
@@ -123,6 +127,5 @@
 <script>
     function handleAccountMenu(){
         document.getElementById('user-dropdown').classList.toggle("hidden")
-        console.log("jkhk");
     }
 </script>

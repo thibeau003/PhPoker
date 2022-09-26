@@ -13,6 +13,8 @@
     require_once "./header.php";
     require_once "./connect.php";
 
+    session_start();
+
     if (isset($_POST["login"])) {
         $email = $_POST["email"];
         $password = $_POST["password"];
@@ -26,7 +28,6 @@
             exit();
         }
 
-        session_start();
         $_SESSION["user"] = $row;
         header("location: ./");
     }

@@ -23,8 +23,9 @@
 
         // Bet
         echo '
-            <label for="bet">Bet </label>
-            <input class="bg-slate-700 rounded-lg border-white border-2" type="text" name="bet" max="' . $_SESSION['user']['balance'] . '">
+            <label for="bet">Bet</label>
+            <br>
+            <input class="bg-slate-700 rounded-lg border-white border-2 text-center" type="number" name="bet" max="' . $_SESSION['user']['balance'] . '" required>
             <p>Balance: ' . $_SESSION['user']['balance'] . '</p>
         ';
         ?>

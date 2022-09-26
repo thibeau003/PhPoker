@@ -14,7 +14,7 @@
     include "./header.php";
     include "./connect.php";
     ?>
-    <div class="pt-20">
+    <div class="pt-20 text-center text-white">
         <?php
         if (isset($_POST['higher'])) {
         }
@@ -23,7 +23,8 @@
 
         // Bet
         echo '
-            <input type="number" name="bet" max="' . $_SESSION['user']['balance'] . '">
+            <label for="bet">Bet </label>
+            <input class="bg-slate-700 rounded-lg border-white border-2" type="text" name="bet" max="' . $_SESSION['user']['balance'] . '">
             <p>Balance: ' . $_SESSION['user']['balance'] . '</p>
         ';
         ?>

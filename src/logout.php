@@ -1,5 +1,4 @@
 <?php
-    session_start();
-    session_destroy();
-    Header ('Location: ./');
-?>
+session_start();
+session_destroy();
+header("Location: ./");

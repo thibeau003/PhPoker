@@ -12,7 +12,7 @@
     <?php
     include "./tailwind.php";
     include "./header.php";
-    include "connect.php";
+    include "./connect.php";
     session_start();
     $sql = "select * from users";
     $resultaat = $mysqli->query($sql);

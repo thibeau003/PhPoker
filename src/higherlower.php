@@ -13,12 +13,12 @@
     include "./tailwind.php";
     include "./header.php";
     include "./connect.php";
-    session_start()
     ?>
     <div class="pt-20 text-center text-white">
         <?php
+        $number = rand(1, 52);
+        echo '<img src="./assets/cards/' . $number . '.png" width="12%">';
 
-        
         if (isset($_POST['higher'])) {
         }
         if (isset($_POST['lower'])) {

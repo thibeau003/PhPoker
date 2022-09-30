@@ -10,7 +10,7 @@
 
         $username = $user['username'];
         $first2Characters = substr($username, 0, 2);
-        $balance = $user['balance'];
+        $balance = $user['balance'] / 100;
 
         echo "
             <header>

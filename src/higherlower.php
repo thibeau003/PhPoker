@@ -16,6 +16,8 @@
     ?>
     <div class="pt-20 text-center text-white">
         <?php
+
+        
         if (isset($_POST['higher'])) {
         }
         if (isset($_POST['lower'])) {

@@ -11,7 +11,6 @@ if (isset($_SESSION["user"])) {
     $username = $user['username'];
     $first2Characters = substr($username, 0, 2);
     $balance = $user['balance'] / 100;
-
     $username = $user['username'];
     $first2Characters = substr($username, 0, 2);
     $balance = $user['balance'];
@@ -54,7 +53,7 @@ if (isset($_SESSION["user"])) {
                         <div class='hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1' id='mobile-menu-2'>
                             <ul class='flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0'>
                                 <li>
-                                    <a href='#' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Game</a>
+                                    <a href='./higherlower.php' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Higher Lower</a>
                                 </li>
                                 <li>
                                     <a href='#' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Game</a>

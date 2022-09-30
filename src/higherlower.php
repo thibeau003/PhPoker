@@ -14,10 +14,14 @@
     include "./header.php";
     include "./connect.php";
     ?>
-    <div class="pt-20 text-center text-white">
+    <div class="pt-20 text-center text-white absolute inset-x-0 bottom-20">
+        <div class="flex justify-center items-center mb-20">
+            <?php
+            $number = rand(1, 52);
+            echo '<img class="" src="./assets/cards/' . $number . '.png" width="12%">';
+            ?>
+        </div>
         <?php
-        $number = rand(1, 52);
-        echo '<img src="./assets/cards/' . $number . '.png" width="12%">';
 
         if (isset($_POST['higher'])) {
         }
@@ -25,8 +29,8 @@
         }
         print '<div>
         <form method="post" action="higherLower.php">
-        <button class="bg-slate-800 rounded-xl p-2 mb-5" type="submit" name="higher">higher</button>
-        <button class="bg-slate-800 rounded-xl p-2 mb-5" type="submit" name="lower">Lower</button>
+        <button class="bg-slate-800 square-lg p-8 mb-5" type="submit" name="higher">Higher &#8593</button>
+        <button class="bg-slate-800 square-lg p-8 mb-5" type="submit" name="lower">Lower &#8595</button>
         </form>
         </div>';
 

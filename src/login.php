@@ -15,11 +15,13 @@
 
     if (isset($_POST["login"])) {
         $email = $_POST["email"];
-        $password = $_POST["password"];
+        $password = hash("sha256", $_POST["password"]);
 
         $query = "SELECT `user_id`, `username`, `email`, `balance`, `admin`, `join_date` FROM `tblusers` WHERE `email` = '" . $email . "' AND `password` = '" . $password . "';";
         $result = $mysqli->query($query);
         $row = $result->fetch_assoc();
+
+        print_r($row);
 
         if (empty($row)) {
             header("location: ./login.php?wrongcredentials");

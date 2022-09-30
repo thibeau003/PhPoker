@@ -7,7 +7,9 @@ require_once "tailwind.php";
 
 if (isset($_SESSION["user"])) {
     $user = $_SESSION["user"];
-
+    $username = $user['username'];
+    $first2Characters = substr($username, 0, 2);
+    $balance = $user['balance'] / 100;
     $username = $user['username'];
     $first2Characters = substr($username, 0, 2);
     $balance = $user['balance'];

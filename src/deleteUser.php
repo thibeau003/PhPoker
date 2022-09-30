@@ -9,19 +9,24 @@
 </head>
 
 <body class="bg-slate-700">
-    <?php
-    include "./tailwind.php";
-    include "connect.php";
-    session_start();
-    $sql = "DELETE FROM users where username =" . $_GET['gebruiker'];
-    if ($mysqli->query($sql)) {
-        print "Record succesfully deleted.";
-    } else {
-        print "Error record delete " . $mysqli->error;
-    }
-    $mysqli->close();
-    print "<br><a href='./'> go back to the list of users</a>";
-    ?>
+    <div class="pt-20 text-center text-white">
+        <?php
+        include "./tailwind.php";
+        include "connect.php";
+        session_start();
+        ?>
+        <div class="pt-20 text-center text-white">
+            <?php
+            $sql = "DELETE FROM users where username =" . $_GET['gebruiker'];
+            if ($mysqli->query($sql)) {
+                print "Record succesfully deleted.";
+            } else {
+                print "Error record delete " . $mysqli->error;
+            }
+            $mysqli->close();
+            print "<br><a href='./'> go back to the list of users</a>";
+            ?>
+        </div>
 </body>
 
 </html>

@@ -22,8 +22,10 @@
         if (isset($_POST['lower'])) {
         }
         print '<div>
+        <form method="post" action="higherLower.php">
         <button class="bg-slate-800 rounded-xl p-2 mb-5" type="submit" name="higher">higher</button>
         <button class="bg-slate-800 rounded-xl p-2 mb-5" type="submit" name="lower">Lower</button>
+        </form>
         </div>';
 
         // Bet

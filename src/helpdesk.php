@@ -30,7 +30,7 @@
     ?>
 
     <div class="h-screen w-screen flex justify-center items-center text-white">
-        <div class="h-1/2 w-1/3 bg-slate-800 rounded-xl">
+        <div class="h-1/2 w-full m-5 md:m-0 md:w-1/2 lg:w-1/3 bg-slate-800 rounded-xl">
             <form class="text-center h-full flex flex-col justify-between mx-5" method="POST">
                 <div>
                     <h1 class="font-bold text-4xl text-center mt-5">Helpdesk</h1>

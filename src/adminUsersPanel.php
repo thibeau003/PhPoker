@@ -12,13 +12,13 @@
     <?php
     include "./tailwind.php";
     include "./header.php";
-    include "connect.php";
+    include "./connect.php";
     session_start();
     $sql = "select * from users";
     $resultaat = $mysqli->query($sql);
     print "<table>";
     while ($row = $resultaat->fetch_assoc()) {
-        print "<tr><td><a href= 'deleteUser.php?gebruiker=" . $row['username'] . "'>" . $row['username'] . "</td></tr>";
+        print "<tr><td>" . $row['username'] . "</td><td><a href= 'deleteUser.php?gebruiker=" . $row['username'] . "'> delete user </tr>";
     }
     print "</table>";
     print "<a href='index.php'> go back to the main page</a>";

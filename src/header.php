@@ -35,6 +35,9 @@
                                 <div class='hidden z-50 mt-2 text-white list-none bg-slate-800 rounded divide-y divide-slate-900 shadow' id='user-dropdown'>
                                     <ul class='py-1' aria-labelledby='user-menu-button'
                                         <li>
+                                            <a href='./helpdesk.php' class='block py-2 px-4 text-sm text-white'>Helpdesk</a>
+                                        </li>
+                                        <li>
                                             <a href='#' class='block py-2 px-4 text-sm text-white'>Settings</a>
                                         </li>
                                         <li>

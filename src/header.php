@@ -41,7 +41,7 @@ if (isset($_SESSION["user"])) {
                                             <a href='./helpdesk.php' class='block py-2 px-4 text-sm text-white'>Helpdesk</a>
                                         </li>
                                         <li>
-                                            <a href='#' class='block py-2 px-4 text-sm text-white'>Settings</a>
+                                            <a href='./settings.php' class='block py-2 px-4 text-sm text-white'>Settings</a>
                                         </li>
                                         <li>
                                             <a href='./logout.php' class='block py-2 px-4 text-sm text-white'>Sign out</a>

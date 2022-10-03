@@ -23,7 +23,7 @@
                         <div class='flex items-center lg:order-2'>
                             <div class='bg-slate-900 rounded-full mr-6'>
                                 <a href='./balance.php'>
-                                    <p class='text-left text-white pl-4 pr-12 py-2'>$". $balance ."</p>
+                                    <p id='balanceText' class='text-left text-white pl-4 pr-12 py-2'>$". $balance ."</p>
                                 </a>
                             </div>
 

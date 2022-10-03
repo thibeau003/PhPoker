@@ -6,9 +6,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Balance | PhPoker</title>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
 </head>
 
 <body class="bg-slate-700">
+    <script>        
+        function refresh() {
+            return new Promise(function (resolve, reject) {
+                const objXMLHttpRequest = new XMLHttpRequest();
+        
+                objXMLHttpRequest.onreadystatechange = function () {
+                    if (objXMLHttpRequest.readyState === 4) {
+                        console.log(objXMLHttpRequest);
+                        if (objXMLHttpRequest.status == 200) {
+                            resolve(objXMLHttpRequest.responseText);
+                        } else {
+                            reject('Error Code: ' +  objXMLHttpRequest.status + ' Error Message: ' + objXMLHttpRequest.statusText);
+                        }
+                    }
+                }
+        
+                objXMLHttpRequest.open('GET', './getNewBalance.php');
+                objXMLHttpRequest.send();
+            });
+        }
+    </script>
     <?php
         include "./header.php";
         include "./connect.php";
@@ -39,6 +63,23 @@
                             </svg>
                         </div>
                     ";
+
+                    echo "
+                    <script>
+                        $.ajax(
+                        './getNewBalance.php?user_id=". $_SESSION['user']['user_id'] ."',
+                        {
+                            success: function(data) {
+                                document.getElementById('balanceText').textContent = '$' + data / 100
+                            },
+                            error: function() {
+                                alert('There was some error performing the AJAX call!');
+                            }
+                        }
+                        );
+                    </script>"
+                    ;
+                    
                 } else {
                     echo "
                         <p class='text-xl font-medium py-4'>Deposit</p>
@@ -47,7 +88,7 @@
                             <div class='w-1/2 mx-auto'>
                                 <label class='text-left w-1/2' for='amount'>Enter an amount</label>
                                 <br>
-                                <input class='w-full bg-transparent border-b-2 mb-4 border-slate-700 focus:outline-none' type='amount' id='deposit_amount' name='deposit_amount' required>
+                                <input class='text-center w-full bg-transparent border-b-2 mb-4 border-slate-700 focus:outline-none' type='amount' id='deposit_amount' name='deposit_amount' required>
                             </div>
                             
                             <input type='submit' class='w-1/2 bg-slate-900 rounded-full mb-4' value='Pay'>

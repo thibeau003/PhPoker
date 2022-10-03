@@ -38,7 +38,7 @@
         echo '
             <label for="bet">Bet</label>
             <br>
-            <input class="bg-slate-800 rounded-lg border-white border-2 text-center" type="number" name="bet" max="' . $_SESSION['user']['balance'] . '" required>
+            <input class="bg-slate-800 rounded-lg border-white border-2 text-center" type="number" name="bet" max="' . $_SESSION['user']['balance'] . '"  min="0" required>
             <p>Balance: ' . $_SESSION['user']['balance'] . '</p>
         ';
         ?>

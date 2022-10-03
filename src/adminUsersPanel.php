@@ -9,20 +9,28 @@
 </head>
 
 <body class="bg-slate-700">
+
     <?php
     include "./tailwind.php";
     include "./header.php";
     include "./connect.php";
     session_start();
-    $sql = "select * from users";
-    $resultaat = $mysqli->query($sql);
-    print "<table>";
-    while ($row = $resultaat->fetch_assoc()) {
-        print "<tr><td>" . $row['username'] . "</td><td><a href= 'deleteUser.php?gebruiker=" . $row['username'] . "'> delete user </tr>";
-    }
-    print "</table>";
-    print "<a href='index.php'> go back to the main page</a>";
     ?>
+    <div class="h-screen w-screen flex justify-center items-center text-white">
+        <div class="h-1/2 w-1/3 bg-slate-800 rounded-xl">
+            <div class="text-center text-white">
+                <?php
+                $sql = "select * from users";
+                $resultaat = $mysqli->query($sql);
+                print "<table align='center'>";
+                while ($row = $resultaat->fetch_assoc()) {
+                    print "<tr align='center'><td align='center'>" . $row['username'] . "</td><td><a href= 'deleteUser.php?gebruiker=" . $row['username'] . "'>  delete user </tr>";
+                }
+                print "</table>";
+                print "<a href='./index.php'> go back to the main page</a>";
+                ?>
+            </div>
+        </div>
 </body>
 
 </html>

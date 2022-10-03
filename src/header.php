@@ -1,18 +1,21 @@
 <?php
-    session_start();
+session_start();
 
-    require_once "tailwind.php";
-    
-    // $_SESSION['user'] = Array("username" => "Warre", "balance" => "1000");
+require_once "tailwind.php";
 
-    if(isset($_SESSION["user"])){
-        $user = $_SESSION["user"];
+// $_SESSION['user'] = Array("username" => "Warre", "balance" => "1000");
 
-        $username = $user['username'];
-        $first2Characters = substr($username, 0, 2);
-        $balance = $user['balance'] / 100;
+if (isset($_SESSION["user"])) {
+    $user = $_SESSION["user"];
 
-        echo "
+    $username = $user['username'];
+    $first2Characters = substr($username, 0, 2);
+    $balance = $user['balance'] / 100;
+    $username = $user['username'];
+    $first2Characters = substr($username, 0, 2);
+    $balance = $user['balance'];
+
+    echo "
             <header>
                 <nav class='fixed w-screen bg-slate-800 px-4 lg:px-6 py-2.5'>
                     <div class='flex flex-wrap justify-between items-center mx-auto max-w-screen-xl'>
@@ -28,7 +31,7 @@
                             </div>
 
                             <button type='button' onclick='handleAccountMenu()' class='aspect-square flex mr-3 rounded-full md:mr-0 bg-slate-900 text-white' id='user-menu-button' aria-expanded='false' data-dropdown-toggle='user-dropdown' data-dropdown-placement='bottom'>
-                                <span class='p-2'>". $first2Characters ."</span>
+                                <span class='p-2'>" . $first2Characters . "</span>
                             </button>
       
                             <div class='absolute w-auto top-14 ml-32 float-right'>
@@ -38,7 +41,7 @@
                                             <a href='./helpdesk.php' class='block py-2 px-4 text-sm text-white'>Helpdesk</a>
                                         </li>
                                         <li>
-                                            <a href='#' class='block py-2 px-4 text-sm text-white'>Settings</a>
+                                            <a href='./settings.php' class='block py-2 px-4 text-sm text-white'>Settings</a>
                                         </li>
                                         <li>
                                             <a href='./logout.php' class='block py-2 px-4 text-sm text-white'>Sign out</a>
@@ -50,7 +53,7 @@
                         <div class='hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1' id='mobile-menu-2'>
                             <ul class='flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0'>
                                 <li>
-                                    <a href='#' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Game</a>
+                                    <a href='./higherlower.php' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Higher Lower</a>
                                 </li>
                                 <li>
                                     <a href='#' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Game</a>
@@ -70,8 +73,8 @@
                 </nav>
             </header>
         ";
-    } else {
-        echo "
+} else {
+    echo "
             <header>
                 <nav class='fixed w-screen bg-slate-800 px-4 lg:px-6 py-2.5'>
                     <div class='flex flex-wrap justify-between items-center mx-auto max-w-screen-xl'>
@@ -115,11 +118,11 @@
                 </nav>
             </header>
         ";
-    }
+}
 ?>
 
 <script>
-    function handleAccountMenu(){
+    function handleAccountMenu() {
         document.getElementById('user-dropdown').classList.toggle("hidden")
     }
 </script>

@@ -15,6 +15,7 @@
 
 
     if (isset($_POST["settings"])) {
+
         if (!empty($_POST["username"])) {
             $sql = "UPDATE tblusers SET username = '" . $_POST["username"] . "' WHERE user_id = " . $_SESSION['user']['user_id'];
             $resultaat = $mysqli->query($sql);
@@ -26,7 +27,7 @@
         }
         if (!empty($_POST["password"])) {
 
-            $sql = "UPDATE tblusers SET password = '" . $_POST["password"] . "' WHERE user_id = " . $_SESSION['user']['user_id'];
+            $sql = "UPDATE tblusers SET password = '" . hash("sha256", $_POST["password"]) . "' WHERE user_id = " . $_SESSION['user']['user_id'];
             $resultaat = $mysqli->query($sql);
         }
     } else {

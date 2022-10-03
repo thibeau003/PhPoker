@@ -12,27 +12,6 @@
 </head>
 
 <body class="bg-slate-700">
-    <script>        
-        function refresh() {
-            return new Promise(function (resolve, reject) {
-                const objXMLHttpRequest = new XMLHttpRequest();
-        
-                objXMLHttpRequest.onreadystatechange = function () {
-                    if (objXMLHttpRequest.readyState === 4) {
-                        console.log(objXMLHttpRequest);
-                        if (objXMLHttpRequest.status == 200) {
-                            resolve(objXMLHttpRequest.responseText);
-                        } else {
-                            reject('Error Code: ' +  objXMLHttpRequest.status + ' Error Message: ' + objXMLHttpRequest.statusText);
-                        }
-                    }
-                }
-        
-                objXMLHttpRequest.open('GET', './getNewBalance.php');
-                objXMLHttpRequest.send();
-            });
-        }
-    </script>
     <?php
         include "./header.php";
         include "./connect.php";
@@ -67,10 +46,10 @@
                     echo "
                     <script>
                         $.ajax(
-                        './getNewBalance.php?user_id=". $_SESSION['user']['user_id'] ."',
+                        './updateUserSession.php?user_id=". $_SESSION['user']['user_id'] ."',
                         {
                             success: function(data) {
-                                document.getElementById('balanceText').textContent = '$' + data / 100
+                                document.getElementById('balanceText').textContent = '$' + ". $_SESSION['user']['balance'] ." / 100
                             },
                             error: function() {
                                 alert('There was some error performing the AJAX call!');

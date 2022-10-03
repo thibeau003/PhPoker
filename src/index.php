@@ -16,11 +16,7 @@
 
     <div class="container pt-20 mx-auto">
         <p class="text-2xl font-extrabold text-white mb-6 text-center">Our games</p>
-        <?php
-        if (isset($_SESSION['admin'])) {
-            print "<a href='adminUsersPanel.php> go to users panel</a>";
-        }
-        ?>
+
 
         <div class="flex flex-row">
             <a href="" class="w-1/2">
@@ -33,6 +29,10 @@
                     <p class="text-white pl-6 pt-4 text-lg font-semibold">Game Name</p>
                 </div>
             </a>
+            <div class="bg-slate-800 rounded-xl w-full pb-4">
+                <a href='adminUsersPanel.php'> go to users panel</a>
+            </div>
+
         </div>
     </div>
 </body>

@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Balance | PhPoker</title>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
 </head>
 
 <body class="bg-slate-700">
@@ -39,6 +42,23 @@
                             </svg>
                         </div>
                     ";
+
+                    echo "
+                    <script>
+                        $.ajax(
+                        './updateUserSession.php?user_id=". $_SESSION['user']['user_id'] ."',
+                        {
+                            success: function(data) {
+                                document.getElementById('balanceText').textContent = '$' + ". $_SESSION['user']['balance'] ." / 100
+                            },
+                            error: function() {
+                                alert('There was some error performing the AJAX call!');
+                            }
+                        }
+                        );
+                    </script>"
+                    ;
+                    
             } else {
                 echo "
                         <p class='text-xl font-medium py-4'>Deposit</p>
@@ -47,48 +67,13 @@
                             <div class='w-1/2 mx-auto'>
                                 <label class='text-left w-1/2' for='amount'>Enter an amount</label>
                                 <br>
-                                <input class='w-full bg-transparent border-b-2 mb-4 border-slate-700 focus:outline-none' type='amount' id='deposit_amount' name='deposit_amount' required>
+                                <input class='text-center w-full bg-transparent border-b-2 mb-4 border-slate-700 focus:outline-none' type='amount' id='deposit_amount' name='deposit_amount' required>
                             </div>
                             
                             <input type='submit' class='w-1/2 bg-slate-900 rounded-full mb-4' value='Pay'>
                         </form>
                     ";
             }
-            ?>
-        </div>
-        <div class="bg-slate-800 mt-6 rounded-xl w-1/3 mx-auto text-center text-white">
-            <?php
-            if (isset($_POST['withdraw_amount'])) {
-                $sql = "UPDATE tblusers SET balance = balance - " . $_POST['withdraw_amount'] * 100 . " WHERE user_id = " . $_SESSION['user']['user_id'];
-                $resultaat = $mysqli->query($sql);
-                if ($_SESSION['user']['balance'] > $_POST['withdraw_amount']) {
-                    $_SESSION['user']['balance'] = $_SESSION['user']['balance'] - $_POST['withdraw_amount'] * 100;
-                }
-
-
-                echo "
-                        <div class='py-8 mx-auto'>
-                        <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dash-circle-fill' viewBox='0 0 16 16'>
-                        <path d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7z'/>
-                      </svg>
-                        </div>
-                    ";
-            } else {
-                echo "
-                        <p class='text-xl font-medium py-4'>withdraw</p>
-            
-                        <form action='' method='post'>  
-                            <div class='w-1/2 mx-auto'>
-                                <label class='text-left w-1/2' for='amount'>Enter an amount</label>
-                                <br>
-                                <input class='w-full bg-transparent border-b-2 mb-4 border-slate-700 focus:outline-none' type='amount' id='withdraw_amount' name='withdraw_amount' required>
-                            </div>
-                            
-                            <input type='submit' class='w-1/2 bg-slate-900 rounded-full mb-4' value='Pay'>
-                        </form>
-                    ";
-            }
-
             ?>
         </div>
 

@@ -55,7 +55,7 @@ if (isset($_SESSION["user"])) {
                                     <a href='./higherlower.php' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Higher Lower</a>
                                 </li>
                                 <li>
-                                    <a href='#' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Game</a>
+                                    <a href='./towers.php' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Towers</a>
                                 </li>
                                 <li>
                                     <a href='#' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Game</a>
@@ -100,7 +100,7 @@ if (isset($_SESSION["user"])) {
                                     <a href='#' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Game</a>
                                 </li>
                                 <li>
-                                    <a href='#' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Game</a>
+                                    <a href='./towers.php' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Towers</a>
                                 </li>
                                 <li>
                                     <a href='#' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Game</a>

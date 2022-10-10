@@ -12,30 +12,9 @@
 </head>
 
 <body class="bg-slate-700">
-    <script>        
-        function refresh() {
-            return new Promise(function (resolve, reject) {
-                const objXMLHttpRequest = new XMLHttpRequest();
-        
-                objXMLHttpRequest.onreadystatechange = function () {
-                    if (objXMLHttpRequest.readyState === 4) {
-                        console.log(objXMLHttpRequest);
-                        if (objXMLHttpRequest.status == 200) {
-                            resolve(objXMLHttpRequest.responseText);
-                        } else {
-                            reject('Error Code: ' +  objXMLHttpRequest.status + ' Error Message: ' + objXMLHttpRequest.statusText);
-                        }
-                    }
-                }
-        
-                objXMLHttpRequest.open('GET', './getNewBalance.php');
-                objXMLHttpRequest.send();
-            });
-        }
-    </script>
     <?php
-        include "./header.php";
-        include "./connect.php";
+    include "./header.php";
+    include "./connect.php";
     ?>
     <div class="pt-20">
         <p class="text-2xl font-semibold pb-8 text-white text-center">Balance</p>
@@ -51,12 +30,12 @@
 
         <div class="bg-slate-800 mt-6 rounded-xl w-1/3 mx-auto text-center text-white">
             <?php
-                if(isset($_POST['deposit_amount'])){
-                    $sql = "UPDATE tblusers SET balance = balance + ". $_POST['deposit_amount'] * 100 ." WHERE user_id = ". $_SESSION['user']['user_id'];
-                    $resultaat = $mysqli->query($sql);
-                    $_SESSION['user']['balance'] = $_SESSION['user']['balance'] + $_POST['deposit_amount'] * 100;
-                    
-                    echo "
+            if (isset($_POST['deposit_amount'])) {
+                $sql = "UPDATE tblusers SET balance = balance + " . $_POST['deposit_amount'] * 100 . " WHERE user_id = " . $_SESSION['user']['user_id'];
+                $resultaat = $mysqli->query($sql);
+                $_SESSION['user']['balance'] = $_SESSION['user']['balance'] + $_POST['deposit_amount'] * 100;
+
+                echo "
                         <div class='py-8 mx-auto'>
                             <svg xmlns='http://www.w3.org/2000/svg' class='w-1/2 mx-auto h-1/2' fill='green' class='bi bi-check-circle-fill' viewBox='0 0 16 16'>
                                 <path d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z'/>
@@ -67,10 +46,10 @@
                     echo "
                     <script>
                         $.ajax(
-                        './getNewBalance.php?user_id=". $_SESSION['user']['user_id'] ."',
+                        './updateUserSession.php?user_id=". $_SESSION['user']['user_id'] ."',
                         {
                             success: function(data) {
-                                document.getElementById('balanceText').textContent = '$' + data / 100
+                                document.getElementById('balanceText').textContent = '$' + ". $_SESSION['user']['balance'] ." / 100
                             },
                             error: function() {
                                 alert('There was some error performing the AJAX call!');
@@ -80,8 +59,8 @@
                     </script>"
                     ;
                     
-                } else {
-                    echo "
+            } else {
+                echo "
                         <p class='text-xl font-medium py-4'>Deposit</p>
             
                         <form action='' method='post'>  
@@ -94,16 +73,20 @@
                             <input type='submit' class='w-1/2 bg-slate-900 rounded-full mb-4' value='Pay'>
                         </form>
                     ";
-                }
+            }
             ?>
         </div>
 
         <?php
-            if(isset($_GET["action"]) && $_GET["action"] == "deposit"){
-                echo "
+        if (isset($_GET["action"]) && $_GET["action"] == "deposit") {
+            echo "
                 
                 ";
-            }
+        } elseif (isset($_GET["action"]) && $_GET["action"] == "Withdraw") {
+            echo "
+                
+                ";
+        }
         ?>
     </div>
 </body>

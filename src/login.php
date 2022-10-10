@@ -27,6 +27,9 @@
             header("location: ./login.php?wrongcredentials");
             exit();
         }
+        if ($row['admin'] == '1') {
+            $_SESSION['admin'] = $row['admin'];
+        }
 
         $_SESSION["user"] = $row;
         header("location: ./");

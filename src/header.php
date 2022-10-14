@@ -97,13 +97,13 @@ if (isset($_SESSION["user"])) {
                         <div class='hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1' id='mobile-menu-2'>
                             <ul class='flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0'>
                                 <li>
-                                    <a href='#' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Game</a>
+                                    <a href='./higherlower.php' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Higher Lower</a>
                                 </li>
                                 <li>
                                     <a href='./towers.php' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Towers</a>
                                 </li>
                                 <li>
-                                    <a href='#' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Game</a>
+                                    <a href='./mines.php' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Mines</a>
                                 </li>
                                 <li>
                                     <a href='#' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Game</a>

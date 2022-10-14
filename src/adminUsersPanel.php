@@ -20,7 +20,7 @@
         <div class="h-1/2 w-1/3 bg-slate-800 rounded-xl">
             <div class="text-center text-white">
                 <?php
-                $sql = "select * from users";
+                $sql = "select * from tblusers";
                 $resultaat = $mysqli->query($sql);
                 print "<table align='center'>";
                 while ($row = $resultaat->fetch_assoc()) {

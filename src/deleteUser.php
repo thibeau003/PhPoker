@@ -17,7 +17,7 @@
         ?>
         <div class="pt-20 text-center text-white">
             <?php
-            $sql = "DELETE FROM users where username =" . $_GET['gebruiker'];
+            $sql = "DELETE FROM tblusers where username ='" . $_GET['gebruiker'] . "'";
             if ($mysqli->query($sql)) {
                 print "Record succesfully deleted.";
             } else {

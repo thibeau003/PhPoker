@@ -64,10 +64,27 @@
                         <br>
                         <input class="w-full bg-transparent border-b-2 border-slate-700 focus:outline-none" type="password" id="password" name="password">
                     </div>
+
+                    <?php
+                    if (!empty($_POST["username"])) {
+                        echo "<p class='text-center text-green-400 mt-5'>Your username has been changed.</p>";
+                    }
+                    if (!empty($_POST["email"])) {
+                        echo "<p class='text-center text-green-400 mt-5'>Your email has been changed.</p>";
+                    }
+                    if (!empty($_POST["password"])) {
+                        echo "<p class='text-center text-green-400 mt-5'>Your password has been changed.</p>";
+                    }
+                    ?>
+
                 </div>
 
 
                 <button class="bg-slate-700 rounded-xl p-2 mb-5" type="submit" name="settings">change</button>
+
+                <a href="./">
+                    <p class="bg-slate-700 rounded-xl p-2 mb-5 w-1/6 text-center">Go back</p>
+                </a>
             </form>
         </div>
 

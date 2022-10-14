@@ -83,7 +83,7 @@ if (isset($_SESSION["user"])) {
                         </a>
                         <div class='flex items-center lg:order-2'>
                             <a href='./login.php' class='text-white font-semibold rounded-lg px-4 lg:px-5 py-1 lg:py-1.5 mr-1 focus:outline-none'>Login</a>
-                            <a href='#' class='text-white font-semibold rounded-lg px-4 lg:px-5 py-1 lg:py-1.5 mr-1 focus:outline-none'>Register</a>
+                            <a href='./register.php' class='text-white font-semibold rounded-lg px-4 lg:px-5 py-1 lg:py-1.5 mr-1 focus:outline-none'>Register</a>
             
                             <button data-collapse-toggle='mobile-menu-2' type='button' class='inline-flex items-center p-2 ml-1 text-white rounded-lg lg:hidden'>
                                 <svg class='w-6 h-6' fill='currentColor' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'>

@@ -49,6 +49,7 @@
                         './updateUserSession.php?user_id=". $_SESSION['user']['user_id'] ."',
                         {
                             success: function(data) {
+                                console.log(data)
                                 document.getElementById('balanceText').textContent = '$' + ". $_SESSION['user']['balance'] ." / 100
                             },
                             error: function() {

@@ -110,16 +110,16 @@
                 <div class ='keuzeBomKnoppen'> 
                     <div class='flex flex-row h-auto my-1'>
                         <button class='w-1/3 mx-1 mb-3 p-3 rounded text-center text-white bg-slate-800'>
-                            <p id=''>3</p>
+                            <p id='knop3Bommen'>3</p>
                         </button>
                         <button class='w-1/3 mx-1 mb-3 p-3 rounded text-center text-white bg-slate-800'>
-                            <p id=''>5</p>
+                            <p id='knop5Bommen'>5</p>
                         </button>
                         <button class='w-1/3 mx-1 mb-3 p-3 rounded text-center text-white bg-slate-800'>
-                            <p id=''>10</p>
+                            <p id='knop10Bommen'>10</p>
                         </button>
                         <button class='w-1/3 mx-1 mb-3 p-3 rounded text-center text-white bg-slate-800'>
-                            <p id=''>20</p>
+                            <p id='knop20Bommen'>20</p>
                         </button>
                     </div>    
                 </div>

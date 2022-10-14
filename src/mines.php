@@ -101,5 +101,12 @@
                                                 <p id='23'>$0.00</p>
                                             </button>
                                         </div>
+                                    </div>
+                                    
+                                    <div class='mt-6 '>
+                                        <form action='' method='POST'>
+                                            <input type='text' name='towersBettingAmount' placeholder='Enter an amount to bet.' class='w-full py-1 px-2 bg-transparent border border-slate-800 rounded focus:outline-none'>
+                                            <input type='submit' value='Start Game' class='w-full py-2 mt-2 bg-slate-800 rounded text-white'>
+                                        </form>
                                     </div>";
     ?>

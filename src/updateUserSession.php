@@ -5,4 +5,5 @@
     $row = $result->fetch_assoc();
 
     $_SESSION['user'] = $row;
+    echo $row
 ?>

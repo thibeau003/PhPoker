@@ -12,4 +12,6 @@
     <?php
     include "./tailwind.php";
     include "./header.php";
+    include "./connect.php";
+    session_start();
     ?>

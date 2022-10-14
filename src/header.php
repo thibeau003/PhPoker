@@ -25,7 +25,7 @@ if (isset($_SESSION["user"])) {
                         <div class='flex items-center lg:order-2'>
                             <div class='bg-slate-900 rounded-full mr-6'>
                                 <a href='./balance.php'>
-                                    <p id='balanceText' class='text-left text-white pl-4 pr-12 py-2'>$". $user['balance'] / 100 ."</p>
+                                    <p id='balanceText' class='text-left text-white pl-4 pr-12 py-2'>$" . $user['balance'] / 100 . "</p>
                                 </a>
                             </div>
 
@@ -58,7 +58,7 @@ if (isset($_SESSION["user"])) {
                                     <a href='./towers.php' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Towers</a>
                                 </li>
                                 <li>
-                                    <a href='#' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Game</a>
+                                    <a href='./mines.php' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Mines</a>
                                 </li>
                                 <li>
                                     <a href='#' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Game</a>

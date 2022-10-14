@@ -26,12 +26,6 @@
             ?>
         </div>
         <?php
-
-        if (isset($_POST['higher'])) {
-            
-        }
-        if (isset($_POST['lower'])) {
-        }
         print '<div>
         <form method="post" action="higherLower.php">
         <button class="bg-slate-800 square-lg p-8 mb-5" type="submit" onclick="changeOpacity();" name="higher">Higher &#8593</button>
@@ -39,13 +33,36 @@
         </form>
         </div>';
 
-        // Bet
-        echo '
-            <label for="bet">Bet</label>
-            <br>
-            <input class="bg-slate-800 rounded-lg border-white border-2 text-center" type="number" name="bet" max="' . $_SESSION['user']['balance'] . '"  min="0" required>
-            <p>Balance: ' . $_SESSION['user']['balance'] . '</p>
-        ';
+
+        if (isset($_POST['knop'])) {
+            $_SESSION['bet'] = $_POST['bet'];
+            echo "
+            <script>
+                $.ajax(
+                './updateUserSession.php?user_id=" . $_SESSION['user']['user_id'] . "',
+                {
+                    success: function(data) {
+                        document.getElementById('balanceText').textContent = '$' + " . $_SESSION['user']['balance'] . " / 100
+                    },
+                    error: function() {
+                        alert('There was some error performing the AJAX call!');
+                    }
+                }
+                );
+            </script>";
+        } else {
+            echo '<form action="higherlower.php" method="post">';
+            echo '<input class="bg-slate-800 rounded-lg border-white border-2 text-center" type="number" name="bet" max="' . $_SESSION['user']['balance'] . '"  min="0" required>';
+            echo '<button type="submit" name="knop">Bet this value</button>';
+            echo '</form>';
+
+            if ($_SESSION['user']['balance'] < $_SESSION['bet']) {
+                echo "error with betting";
+            }
+        }
+
+        echo "<p>Bet:" . $_SESSION['bet'] . "</p>";
+
         ?>
     </div>
 </body>

@@ -20,10 +20,6 @@
         <div class="grid grid-cols-3 container mx-auto text-center mb-10">
             <?php
 
-            if (!isset($_SESSION['user'])) {
-                header("location: login.php");
-            }
-
             echo '<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>';
             $deck = range(1, 52);
             shuffle($deck);
@@ -50,7 +46,7 @@
         </script>
         <form action="{' . $_SERVER['PHP_SELF'] . '}" method="post" onsubmit="javascript:return false;" id="myform">
         <button class="bg-slate-800 square-lg p-8 mb-5 rounded" type="submit" onclick="changeOpacity();" name="higher">Higher &#8593</button>
-        <button class="bg-slate-800 square-lg p-8 mb-5 rounded" type="submit" name="lower">Lower &#8595</button>
+        <button class="bg-slate-800 square-lg p-8 mb-5 rounded" type="submit" onclick="changeOpacity();" name="lower">Lower &#8595</button>
         </form>
         </div>';
 

@@ -108,25 +108,33 @@
                 <input type='text' name='towersBettingAmount' placeholder='Enter an amount to bet.' class='w-full mb-3 py-1 px-2 bg-transparent border border-slate-800 rounded focus:outline-none'>
                 <p class =' mb-3 text-white text-center'>The amount of mines.</p>
                 <div class ='keuzeBomKnoppen'> 
-                    <div class='flex flex-row h-auto my-1'>
-                        <button class='w-1/3 mx-1 mb-3 p-3 rounded text-center text-white bg-slate-800'>
-                            <p id='knop3Bommen'>3</p>
-                        </button>
-                        <button class='w-1/3 mx-1 mb-3 p-3 rounded text-center text-white bg-slate-800'>
-                            <p id='knop5Bommen'>5</p>
-                        </button>
-                        <button class='w-1/3 mx-1 mb-3 p-3 rounded text-center text-white bg-slate-800'>
-                            <p id='knop10Bommen'>10</p>
-                        </button>
-                        <button class='w-1/3 mx-1 mb-3 p-3 rounded text-center text-white bg-slate-800'>
-                            <p id='knop20Bommen'>20</p>
-                        </button>
+                    <div class='flex flex-row h-auto my-1 '>
+                        <div class='mx-auto'>
+                            <input type='radio' name='aantalBommen' >
+                                <p id='knop3Bommen' class=' text-white text-center'>3</p>
+                            
+                        </div>
+                        <div class='mx-auto'>
+                            <input type='radio' name='aantalBommen' >
+                                <p id='knop5Bommen' class=' text-white text-center'>5</p>
+                            
+                        </div>
+                        <div class='mx-auto'>
+                            <input type='radio' name='aantalBommen' >
+                                <p id='knop10Bommen' class=' text-white text-center'>10</p>
+                            
+                        </div>
+                        <div class='mx-auto'>
+                            <input type='radio' name='aantalBommen' >
+                                <p id='knop20Bommen' class=' text-white text-center'>20</p>
+                            
+                        </div>
                     </div>    
                 </div>
                 <input type='submit' value='Start Game' class='w-full py-2 mt-2 bg-slate-800 rounded text-white'>
             </form>
         </div>
     </div>";
-                                    
-    
+
+
     ?>

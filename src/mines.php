@@ -14,6 +14,9 @@
     include "./header.php";
     include "./connect.php";
     session_start();
+?>
+    <a class="pt-20 text-white float-left ml-12 text-xl" href="./index.php">&#x2190 Back</a>
+    <?php
     echo "
     <div class='mt-10 w-2/3 mx-auto'>
         <div class='keuzeKnoppen'>
@@ -130,7 +133,7 @@
                             
                         </div>
                     </div>    
-                </div>
+            
                 <input type='submit' value='Start Game' class='w-full py-2 mt-2 bg-slate-800 rounded text-white'>
             </form>
         </div>

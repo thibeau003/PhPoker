@@ -104,28 +104,28 @@
             </div>
         </div>
         <div class='mt-6 '>
-            <form action='' method='POST'>
+            <form action='mines.php' method='POST'>
                 <input type='text' name='towersBettingAmount' placeholder='Enter an amount to bet.' class='w-full mb-3 py-1 px-2 bg-transparent border border-slate-800 rounded focus:outline-none'>
                 <p class =' mb-3 text-white text-center'>The amount of mines.</p>
                 <div class ='keuzeBomKnoppen'> 
                     <div class='flex flex-row h-auto my-1 '>
                         <div class='mx-auto'>
-                            <input type='radio' name='aantalBommen' >
+                            <input type='radio' name='aantalBommen' value='3'>
                                 <p id='knop3Bommen' class=' text-white text-center'>3</p>
                             
                         </div>
                         <div class='mx-auto'>
-                            <input type='radio' name='aantalBommen' >
+                            <input type='radio' name='aantalBommen' value='5'>
                                 <p id='knop5Bommen' class=' text-white text-center'>5</p>
                             
                         </div>
                         <div class='mx-auto'>
-                            <input type='radio' name='aantalBommen' >
+                            <input type='radio' name='aantalBommen' value='10'>
                                 <p id='knop10Bommen' class=' text-white text-center'>10</p>
                             
                         </div>
                         <div class='mx-auto'>
-                            <input type='radio' name='aantalBommen' >
+                            <input type='radio' name='aantalBommen' value='20'>
                                 <p id='knop20Bommen' class=' text-white text-center'>20</p>
                             
                         </div>

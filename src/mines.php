@@ -13,131 +13,149 @@
     include "./tailwind.php";
     include "./header.php";
     include "./connect.php";
-    session_start();
-?>
+    ?>
     <a class="pt-20 text-white float-left ml-12 text-xl" href="./index.php">&#x2190 Back</a>
+
     <?php
-    echo "
-    <div class='mt-10 w-2/3 mx-auto'>
-        <div class='keuzeKnoppen'>
-            <div class='flex flex-row  my-1'>
-                <button class='w-1/3 mx-1 mb-5 p-7 rounded text-center text-white bg-slate-800'>
-                    <p id='1'></p>
-                </button>
-                <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800'>
-                    <p id='2'></p>
-                </button>
-                <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800'>
-                    <p id='3'></p>
-                </button>
-                <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800'>
-                    <p id='4'></p>
-                </button>
-                <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800'>
-                    <p id='5'></p>
-                </button>
-            </div>
-            <div class='flex flex-row h-auto my-1'>
-                <button class='w-1/3 mx-1 mb-5 p-7 rounded text-center text-white bg-slate-800'>
-                    <p id='6'></p>
-                </button>
-                <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800'>
-                    <p id='7'></p>
-                </button>
-                <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800'>
-                    <p id='8'></p>
-                </button>
-                <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800'>
-                    <p id='9'></p>
-                </button>
-                <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800'>
-                    <p id='10'></p>
-                </button>
-            </div>
-            <div class='flex flex-row h-auto my-1'>
-                <button class='w-1/3 mx-1 mb-5 p-7 rounded text-center text-white bg-slate-800'>
-                    <p id='11'></p>
-                </button>
-                <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800'>
-                    <p id='12'></p>
-                </button>
-                <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800'>
-                    <p id='13'></p>
-                </button>
-                <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800'>
-                    <p id='14'></p>
-                </button>
-                <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800'>
-                    <p id='15'></p>
-                </button>
-            </div>
-            <div class='flex flex-row h-auto my-1'>
-                <button class='w-1/3 mx-1 mb-5 p-7 rounded text-center text-white bg-slate-800'>
-                    <p id='16'></p>
-                </button>
-                <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800'>
-                    <p id='17'></p>
-                </button>
-                <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800'>
-                    <p id='18'></p>
-                </button>
-                <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800'>
-                    <p id='19'></p>
-                </button>
-                <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800'>
-                    <p id='20'></p>
-                </button>
-            </div>
-            <div class='flex flex-row h-auto my-1 '>
-                <button class='w-1/3 mx-1 mb-5 p-7 rounded text-center text-white bg-slate-800'>
-                    <p id='21'></p>
-                </button>
-                <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800'>
-                    <p id='22'></p>
-                </button>
-                <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800'>
-                    <p id='23'></p>
-                </button>
-                <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800'>
-                    <p id='24'></p>
-                </button>
-                <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800'>
-                    <p id='25'></p>
-                </button>
-            </div>
-        </div>
-        <div class='mt-6 '>
-            <form action='mines.php' method='POST'>
-                <input type='text' name='towersBettingAmount' placeholder='Enter an amount to bet.' class='w-full mb-3 py-1 px-2 bg-transparent border border-slate-800 rounded focus:outline-none'>
-                <p class =' mb-3 text-white text-center'>The amount of mines.</p>
-                <div class ='keuzeBomKnoppen'> 
-                    <div class='flex flex-row h-auto my-1 '>
-                        <div class='mx-auto'>
-                            <input type='radio' name='aantalBommen' value='3'>
-                                <p id='knop3Bommen' class=' text-white text-center'>3</p>
-                            
-                        </div>
-                        <div class='mx-auto'>
-                            <input type='radio' name='aantalBommen' value='5'>
-                                <p id='knop5Bommen' class=' text-white text-center'>5</p>
-                            
-                        </div>
-                        <div class='mx-auto'>
-                            <input type='radio' name='aantalBommen' value='10'>
-                                <p id='knop10Bommen' class=' text-white text-center'>10</p>
-                            
-                        </div>
-                        <div class='mx-auto'>
-                            <input type='radio' name='aantalBommen' value='20'>
-                                <p id='knop20Bommen' class=' text-white text-center'>20</p>
-                            
-                        </div>
-                    </div>    
+    $arrray = array(0, 24);
+    if (isset($_POST['bombAmount'])) {
+        
+        for ($i = 0; $i < $_POST['bombAmount']; $i++) {
+            $arrray[$i] = "Bom";
+        }
+        for($i = $_POST['bombAmount']; $i < 25; $i++){
+            $arrray[$i] = "Win";
+        }
+        shuffle($arrray);
+
+    }
+    
+    switch($arrray){
+        case $arrray[0]:
             
-                <input type='submit' value='Start Game' class='w-full py-2 mt-2 bg-slate-800 rounded text-white'>
-            </form>
-        </div>
-    </div>";
+            break;
+    }
+    
 
-
+    echo "
+        <div class='mt-10 w-2/3 mx-auto'>
+            <div class='keuzeKnoppen'>
+                <div class='flex flex-row  my-1'>
+                    <button class='w-1/3 mx-1 mb-5 p-7 rounded text-center text-white bg-slate-800' id= '0'>
+                       
+                    </button>
+                    <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800' id= '1'>
+                        
+                    </button>
+                    <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800' id= '2'>
+                    
+                    </button>
+                    <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800' id= '3'>
+                        
+                    </button>
+                    <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800' id= '4'>
+                        
+                    </button>
+                </div>
+                <div class='flex flex-row h-auto my-1'>
+                    <button class='w-1/3 mx-1 mb-5 p-7 rounded text-center text-white bg-slate-800' id= '5'>
+                        
+                    </button>
+                    <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800' id= '6'>
+                        
+                    </button>
+                    <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800' id= '7'>
+                        
+                    </button>
+                    <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800' id= '8'>
+                        
+                    </button>
+                    <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800' id= '9'>
+                        
+                    </button>
+                </div>
+                <div class='flex flex-row h-auto my-1'>
+                    <button class='w-1/3 mx-1 mb-5 p-7 rounded text-center text-white bg-slate-800' id= '10'>
+                        
+                    </button>
+                    <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800' id= '11'>
+                        
+                    </button>
+                    <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800' id= '12'>
+                    
+                    </button>
+                    <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800' id= '13'>
+                        
+                    </button>
+                    <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800' id= '14'>
+                        
+                    </button>
+                </div>
+                <div class='flex flex-row h-auto my-1'>
+                    <button class='w-1/3 mx-1 mb-5 p-7 rounded text-center text-white bg-slate-800' id= '15'>
+                        
+                    </button>
+                    <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800' id= '16'>
+                        
+                    </button>
+                    <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800' id= '17'>
+                        
+                    </button>
+                    <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800' id= '18'>
+                        
+                    </button>
+                    <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800' id= '19'>
+                        
+                    </button>
+                </div>
+                <div class='flex flex-row h-auto my-1 '>
+                    <button class='w-1/3 mx-1 mb-5 p-7 rounded text-center text-white bg-slate-800' id= '20'>
+                        
+                    </button>
+                    <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800' id= '21'>
+                        
+                    </button>
+                    <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800' id= '22'>
+                        
+                    </button>
+                    <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800' id= '23'>
+                        
+                    </button>
+                    <button class='w-1/3 mx-1 mb-5 rounded text-center text-white bg-slate-800' id= '24'>
+                        
+                    </button>
+                </div>
+            </div>
+            <div class='mt-6 '>
+                <form action='mines.php' method='POST'>
+                    <input type='text' name='towersBettingAmount' placeholder='Enter an amount to bet.' class='w-full mb-3 py-1 px-2 bg-transparent border border-slate-800 rounded focus:outline-none'>
+                    <p class =' mb-3 text-white text-center'>The amount of mines.</p>
+                    <div class ='keuzeBomKnoppen'> 
+                        <div class='flex flex-row h-auto my-1'>
+                            <div class='mx-auto'>
+                                <input type='radio' name='bombAmount' value='3'>
+                                    <p class=' text-white text-center'>3</p>
+                                    
+                            </div>
+                            <div class='mx-auto'>
+                                <input type='radio' name='bombAmount' value='5'>
+                                    <p class=' text-white text-center'>5</p>
+                                    
+                            </div>
+                            <div class='mx-auto'>
+                                <input type='radio' name='bombAmount' value='10'>
+                                    <p class=' text-white text-center'>10</p>
+                                    
+                            </div>
+                            <div class='mx-auto'>
+                                <input type='radio' name='bombAmount' value='20'>
+                                    <p class=' text-white text-center'>20</p>
+                                    
+                            </div>
+                        </div>    
+                    
+                    <input type='submit' value='Start Game' class='w-full cursor-pointer py-2 mt-2 bg-slate-800 rounded text-white'>
+                </form>
+            </div>
+        </div>";
     ?>

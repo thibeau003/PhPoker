@@ -158,4 +158,31 @@
                 </form>
             </div>
         </div>";
+        if (isset($_POST['amount'])) {
+            $_SESSION['mines']['bet'] = $_POST['amount'] * 100;
+    
+            if ($_SESSION['mines']['bet'] <= $_SESSION['user']['balance']) {
+                $sql = 'UPDATE tblusers SET balance = balance - ' .  $_SESSION['mines']['bet'] . ' WHERE user_id = ' . $_SESSION['user']['user_id'];
+                $result = $mysqli->query($sql);
+                $_SESSION['user']['balance'] = $_SESSION['user']['balance'] - $_SESSION['mines']['bet'];
+                echo "
+                <script>
+                $.ajax(
+                './updateUserSession.php?user_id=" . $_SESSION['user']['user_id'] . "',
+                {
+                    success: function(data) {
+                        document.getElementById('balanceText').textContent = '$' + " . $_SESSION['user']['balance'] . " / 100
+                    },
+                    error: function() {
+                        alert('There was some error performing the AJAX call!');
+                    }
+                }
+                );
+            </script>";
+                $_SESSION['mines']['bet'] = 0;
+                echo $_SESSION['mines']['bet'];
+            };
+        }
+        ?> 
+        
     ?>

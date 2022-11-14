@@ -20,8 +20,151 @@ setcookie("currentRow", "", time() + (86400), "/");
 
     <?php
 
-        if(isset($_SESSION['towers_bet'])){
+        if(isset($_POST['profit'])){
+            $sql = "UPDATE tblusers SET balance = balance + " . $_POST['profit'] . " WHERE user_id = " . $_SESSION['user']['user_id'];
+            $resultaat = $mysqli->query($sql);
+            $_SESSION['user']['balance'] += $_POST['profit'];
 
+            echo "
+                <div class='container mx-auto pt-20'>
+                    <p class='text-center text-xl font-semibold text-white'>Towers</p>
+                
+                    <div class='mt-10 w-2/3 mx-auto'>
+                        <div class=''>
+                            <div class='flex flex-row h-auto my-1'>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                            </div>
+                            <div class='flex flex-row h-auto my-1'>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                            </div>
+                            <div class='flex flex-row h-auto my-1'>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                            </div>
+                            <div class='flex flex-row h-auto my-1'>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                            </div>
+                            <div class='flex flex-row h-auto my-1'>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                            </div>
+                            <div class='flex flex-row h-auto my-1'>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                            </div>
+                            <div class='flex flex-row h-auto my-1'>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                            </div>
+                            <div class='flex flex-row h-auto my-1'>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                            </div>
+                            <div class='flex flex-row h-auto my-1'>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                            </div>
+                            <div class='flex flex-row h-auto my-1'>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                                <button class='w-1/3 mx-1 rounded text-center text-white bg-slate-800'>
+                                    <p class=''>$0.00</p>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class='mt-6 '>
+                            <form action='' method='POST'>
+                                <input type='text' name='towersBettingAmount' placeholder='Enter an amount to bet.' class='text-white w-full py-1 px-2 bg-transparent border border-slate-800 rounded focus:outline-none'>
+                                <input type='submit' value='Start Game' class='w-full py-2 mt-2 bg-slate-800 rounded text-white'>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <script>                    
+                    $.ajax('./updateUserSession.php?user_id=". $_SESSION['user']['user_id'] ."', {
+                        success: function(data) {
+                            document.getElementById('balanceText').textContent = '$". round($_SESSION['user']['balance'] / 100, 2) ." '
+                        },
+                        error: function() {
+                            alert('There was some error performing the AJAX call!');
+                        }
+                    });
+                </script>
+            ";
+
+        
         } else {
             if(isset($_POST['towersBettingAmount']) || (isset($_SESSION['playingTowers']) && $_SESSION['playingTowers'] == 1)){
                 if(isset($_SESSION['user'])){
@@ -159,9 +302,10 @@ setcookie("currentRow", "", time() + (86400), "/");
                                             <div class='w-full py-1 px-2 bg-transparent border border-slate-800 rounded focus:outline-none'>
                                                 <p class='text-white w-full text-center'>$". $amount / 100 ."</p>
                                             </div>
-                                            <button onclick='onClickStopGame()' id='stopGame' class='w-full' disabled>
-                                                <div class='w-full py-2 mt-2 bg-slate-800 rounded text-white'><p class='w-full text-center' id='currentWinnings'>Current winnings: $". $_SESSION['currentWinningTowers'] / 100 ."</p></div>
-                                            </button>
+                                            <form method='post'>
+                                                <input type='hidden' name='profit' id='profit' value='0'>
+                                                <input type='submit' id='stopGame' value='Current winnings: $". $_SESSION['currentWinningTowers'] / 100 ."' class='w-full py-2 mt-2 bg-slate-800 rounded text-white'>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -232,15 +376,19 @@ setcookie("currentRow", "", time() + (86400), "/");
                                                 document.getElementById((clickedColumn.id.charAt(0) + '3')).parentElement.disabled = true;
 
                                                 clickedColumn.style.backgroundColor = "red"
+
+                                                document.getElementById('profit').value = 0
+                                                document.getElementById('stopGame').value = 'Game Over'
                                             } else {
                                                 const currentWinnings = <?php echo $_SESSION['betTowers'] ?> * Math.pow(1.20, parseInt(clickedColumn.id.charAt(0)) + 1)
-                                               
-                                              
+                                        
                                                 clickedColumn.style.backgroundColor = "green"
+
+                                                document.getElementById('profit').value = currentWinnings
                                                     
                                                 $.ajax('./updateWinningsTowers.php?currentWinnings=' + currentWinnings, {
                                                     success: function(data) {
-                                                        document.getElementById('currentWinnings').textContent = 'Current winnings: $' + Math.round(currentWinnings) / 100
+                                                        document.getElementById('stopGame').value = 'Current winnings: $' + Math.round(currentWinnings) / 100
                                                     },
                                                     error: function() {
                                                         alert('There was some error performing the AJAX call!');
@@ -267,14 +415,18 @@ setcookie("currentRow", "", time() + (86400), "/");
                                                 document.getElementById('03').parentElement.disabled = true;
 
                                                 clickedColumn.style.backgroundColor = "red"
+                                                document.getElementById('profit').value = 0
+                                                document.getElementById('stopGame').value = 'Game Over'
                                             } else {
                                                 const currentWinnings = <?php echo $_SESSION['betTowers'] ?> * 1.20
                                               
                                                 clickedColumn.style.backgroundColor = "green"
                                                     
+                                                document.getElementById('profit').value = currentWinnings
+
                                                 $.ajax('./updateWinningsTowers.php?currentWinnings=' + currentWinnings, {
                                                     success: function(data) {
-                                                        document.getElementById('currentWinnings').textContent = 'Current winnings: $' + currentWinnings / 100
+                                                        document.getElementById('stopGame').value = 'Current winnings: $' + currentWinnings / 100
                                                     },
                                                     error: function() {
                                                         alert('There was some error performing the AJAX call!');
@@ -288,38 +440,7 @@ setcookie("currentRow", "", time() + (86400), "/");
                                                 document.getElementById('11').parentElement.disabled = false;
                                                 document.getElementById('12').parentElement.disabled = false;
                                                 document.getElementById('13').parentElement.disabled = false;
-
-                                                document.getElementById('stopGame').disabled = false;
                                             }
-                                        }
-                                    }
-
-                                    function onClickStopGame(){
-                                        document.getElementById('stopGame').disabled = true; 
-
-                                        const kolomIds = [['01', '02', '03'], ['11', '12', '13'], ['21', '22', '23'], ['31', '32', '33'], ['41', '42', '43'], ['51', '52', '53'], ['61', '62', '63'], ['71', '72', '73'], ['81', '82', '83'], ['91', '92', '93']]
-                                        let amount = 0;   
-
-                                        for(let i = 0; i < 10; i++){
-                                            if(!document.getElementById(kolomIds[i][0]).parentElement.disabled){
-                                                amount = <?php echo $_SESSION['betTowers'] ?> * Math.pow(1.20, i + 1)
-                                            }
-                                        }
-
-                                        console.log(amount);
-
-                                        <?php
-                                            // $sql = "UPDATE tblusers SET balance = balance + " . $_COOKIE['amount'] . " WHERE user_id = " . $_SESSION['user']['user_id'];
-                                            // $resultaat = $mysqli->query($sql);
-                                            // $_SESSION['user']['balance'] += $_COOKIE['amount'];
-                                        ?>    
-
-                                        document.getElementById('balanceText').textContent = '$' + <?php echo $_SESSION['user']['balance'] ?> / 100
-                                            
-                                        for(let i = 0; i < 10; i++){
-                                            for(let j = 0; j <= 2; j++) {
-                                                document.getElementById(kolomIds[i][j].toString()).textContent = '$0.00'
-                                            }        
                                         }
                                     }
                                 </script>

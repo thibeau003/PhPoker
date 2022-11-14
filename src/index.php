@@ -19,16 +19,21 @@
 
 
         <div class="flex flex-row">
-            <a href="" class="w-1/2">
-                <div class="bg-slate-800 rounded-xl mr-8 w-full pb-4">
-                    <p class="text-white pl-6 pt-4 text-lg font-semibold">Game Name</p>
-                </div>
-            </a>
-            <a href="" class="w-1/2">
+            <a href="./blackjack.php" class="w-1/2 mr-8">
                 <div class="bg-slate-800 rounded-xl w-full pb-4">
-                    <p class="text-white pl-6 pt-4 text-lg font-semibold">Game Name</p>
+                    <p class="text-white pl-6 pt-4 text-lg font-semibold">Favourite</p>
+                    <hr class="border-slate-900 mx-2">
+                    <p class="text-white pl-6 pt-4 text-lg font-semibold">Blackjack</p>
                 </div>
             </a>
+            <a href="./headsortails.php" class="w-1/2">
+                <div class="bg-slate-800 rounded-xl w-full pb-4">
+                    <p class="text-white pl-6 pt-4 text-lg font-semibold">New</p>
+                    <hr class="border-slate-900 mx-2">
+                    <p class="text-white pl-6 pt-4 text-lg font-semibold">Heads or tails</p>
+                </div>
+            </a>
+            
             <?php
             if (!empty($_SESSION["user"])) {
                 if (!$_SESSION["user"]["admin"] == 0) {
@@ -41,6 +46,25 @@
             }
             ?>
 
+        </div>
+        <div class="flex flex-row mt-5">
+            <a href="./towers.php" class="w-1/2 mr-8">
+                <div class="bg-slate-800 rounded-xl w-full pb-4">
+                    <p class="text-white pl-6 pt-4 text-lg font-semibold">Towers</p>
+                </div>
+            </a>
+            <a href="./mines.php" class="w-1/2">
+                <div class="bg-slate-800 rounded-xl w-full pb-4">
+                    <p class="text-white pl-6 pt-4 text-lg font-semibold">Mines</p>
+                </div>
+            </a> 
+        </div>
+        <div class="flex flex-row mt-5">
+            <a href="./higherlower.php" class="w-full">
+                <div class="bg-slate-800 rounded-xl w-full pb-4">
+                    <p class="text-white pl-6 pt-4 text-lg font-semibold">Higherlower</p>
+                </div>
+            </a>
         </div>
     </div>
 </body>

@@ -106,10 +106,10 @@ if (isset($_SESSION["user"])) {
                                     <a href='./mines.php' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Mines</a>
                                 </li>
                                 <li>
-                                    <a href='#' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Game</a>
+                                    <a href='./blackjack.php' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Blackjack</a>
                                 </li>
                                 <li>
-                                    <a href='#' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0 '>Game</a>
+                                    <a href='./headsortails.php' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0 '>Heads or tails</a>
                                 </li>
                             </ul>
                         </div>

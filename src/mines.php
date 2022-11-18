@@ -125,7 +125,7 @@
             </div>
             <div class='mt-6 '>
                 <form action='mines.php' method='POST'>
-                    <input type='text' name='minesBettingAmount' placeholder='Enter an amount to bet.' class='w-full mb-3 py-1 px-2 bg-transparent border border-slate-800 rounded focus:outline-none'>
+                    <input type='text' name='amount' placeholder='Enter an amount to bet.' class='w-full mb-3 py-1 px-2 bg-transparent border border-slate-800 text-white rounded focus:outline-none'>
                     <p class =' mb-3 text-white text-center'>The amount of mines.</p>
                     <div class ='keuzeBomKnoppen'> 
                         <div class='flex flex-row h-auto my-1'>
@@ -158,11 +158,11 @@
     </div>
         ";
 
-    echo "
+    ?>
     <script>
         function onClick(ButtonId) {
             const clickedButton = document.getElementById(ButtonId)
-            const valuesButton = <?php echo json_encode(" . $_SESSION['mines'] . ") ?>
+            const valuesButton = <?php echo json_encode($_SESSION['mines']) ?>
 
             if (valuesButton[clickedButton.id] == 'Bom') {
 
@@ -178,15 +178,11 @@
                 clickedButton.style.backgroundColor = '#005900'
             }
         }
-    </script>";
-
-
-    print "xd";
+    </script>
+<?php
     if (isset($_POST['amount'])) {
         $_SESSION['mines']['bet'] = $_POST['amount'] * 100;
-        print "testd";
         if ($_SESSION['mines']['bet'] <= $_SESSION['user']['balance']) {
-            print "test";
             $sql = 'UPDATE tblusers SET balance = balance - ' .  $_SESSION['mines']['bet'] . ' WHERE user_id = ' . $_SESSION['user']['user_id'];
             $result = $mysqli->query($sql);
             $_SESSION['user']['balance'] = $_SESSION['user']['balance'] - $_SESSION['mines']['bet'];
@@ -204,7 +200,6 @@
                 );
             </script>";
         }
-        $_SESSION['mines']['bet'] = 0;
         echo $_SESSION['mines']['bet'];
     }
     ?>

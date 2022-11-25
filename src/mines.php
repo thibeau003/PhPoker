@@ -27,7 +27,7 @@
             $array[$i] = "Win";
         }
         shuffle($array);
-
+        $_SESSION['bombAmount'] = $_POST['bombAmount'];
         $_SESSION['mines'] = $array;
     }
     print_r($array);
@@ -125,7 +125,7 @@
             </div>
             <div class='mt-6 '>
                 <form action='mines.php' method='POST'>
-                    <input type='text' name='towersBettingAmount' placeholder='Enter an amount to bet.' class='w-full mb-3 py-1 px-2 bg-transparent border border-slate-800 rounded focus:outline-none'>
+                    <input type='text' name='amount' placeholder='Enter an amount to bet.' class='w-full mb-3 py-1 px-2 bg-transparent border border-slate-800 text-white rounded focus:outline-none'>
                     <p class =' mb-3 text-white text-center'>The amount of mines.</p>
                     <div class ='keuzeBomKnoppen'> 
                         <div class='flex flex-row h-auto my-1'>
@@ -156,28 +156,32 @@
             </div>
         </div>
     </div>
-        ";  
+        ";
+
     ?>
     <script>
         function onClick(ButtonId) {
             const clickedButton = document.getElementById(ButtonId)
             const valuesButton = <?php echo json_encode($_SESSION['mines']) ?>
 
-            if (valuesButton[clickedButton.id] == "Bom") {
+            if (valuesButton[clickedButton.id] == 'Bom') {
 
                 for (let i = 0; i < valuesButton.length; i++) {
                     document.getElementById(i).disabled = true;
                 }
-                clickedButton.style.backgroundColor = "#990000"
+                clickedButton.style.backgroundColor = '#990000'
+                document.getElementById('profit').value = 0
+                document.getElementById('stopGame').value = 'Game Over'
 
             } else {
                 clickedButton.disabled = true;
-                clickedButton.style.backgroundColor = "#005900"
+                clickedButton.style.backgroundColor = '#005900'
             }
         }
     </script>
-
-    <?php
+<?php
+    if (isset($_POST['amount'])) {
+        $_SESSION['mines']['bet'] = $_POST['amount'] * 100;
         if ($_SESSION['mines']['bet'] <= $_SESSION['user']['balance']) {
             $sql = 'UPDATE tblusers SET balance = balance - ' .  $_SESSION['mines']['bet'] . ' WHERE user_id = ' . $_SESSION['user']['user_id'];
             $result = $mysqli->query($sql);
@@ -195,7 +199,30 @@
                 }
                 );
             </script>";
-                $_SESSION['mines']['bet'] = 0;
-                echo $_SESSION['mines']['bet'];
-            }
-                ?>
+        }
+        echo $_SESSION['mines']['bet'];
+    }
+    ?>
+    <?php
+    $profit = $_SESSION['mines']['bet'];
+    if ($_SESSION['bombAmount'] = '3') {
+        $winning = $profit * 1.08;
+        $profit += $winning;
+        print "test3";
+    } elseif ($_SESSION['bombAmount'] = '5') {
+        $winning = $profit * 1.16;
+        $profit += $winning;
+        print "test5";
+    } elseif ($_SESSION['bombAmount'] = '10') {
+        $winning = $profit * 1.70;
+        $profit += $winning;
+        print "test10";
+    } elseif ($_SESSION['bombAmount'] = '20') {
+        $winning = $profit * 3;
+        $profit += $winning;
+        print "test20";
+    } else {
+        print "fail";
+    }
+    ?>
+</body>

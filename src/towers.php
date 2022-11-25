@@ -23,7 +23,8 @@ setcookie("currentRow", "", time() + (86400), "/");
         if(isset($_POST['profit'])){
             $sql = "UPDATE tblusers SET balance = balance + " . $_POST['profit'] . " WHERE user_id = " . $_SESSION['user']['user_id'];
             $resultaat = $mysqli->query($sql);
-            $_SESSION['user']['balance'] += $_POST['profit'];
+            $_SESSION['user']['balance'] += round($_POST['profit'],2);
+
 
             echo "
                 <div class='container mx-auto pt-20'>

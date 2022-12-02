@@ -30,13 +30,17 @@
         $_SESSION['bombAmount'] = $_POST['bombAmount'];
         $_SESSION['mines'] = $array;
     }
-    print_r($array);
     if (isset($_SESSION['user'])) {
-        if (isset($_SESSION['profit'])) {
-            $sql = "UPDATE tblusers SET balance = balance + " . $_POST['profit'] . " WHERE user_id = " . $_SESSION['user']['user_id'];
-            $resultaat = $mysqli->query($sql);
-            $_SESSION['user']['balance'] += round($_POST['profit'], 2);
-
+        if (isset($_POST['amount'])) {
+            $_SESSION['amount'] = $_POST['amount'];
+        }
+        if (isset($_SESSION['amount'])) {
+            if (isset($_POST['stopgame'])) {
+                $sql = "UPDATE tblusers SET balance = balance + " . $_POST['profit'] . " WHERE user_id = " . $_SESSION['user']['user_id'];
+                $resultaat = $mysqli->query($sql);
+                $_SESSION['user']['balance'] += round($_POST['profit'], 2);
+            }
+            print $_POST['profit'];
             echo "
     <div class='container mx-auto pt-20'>
         <p class='text-center text-xl font-semibold text-white'>Mines</p>
@@ -130,7 +134,7 @@
             </div>
             <div class='mt-6 '>
                 <form action='mines.php' method='POST'>
-                    <input type='text' name='amount' placeholder='Enter an amount to bet.' class='w-full mb-3 py-1 px-2 bg-transparent border border-slate-800 text-white rounded focus:outline-none'>
+                    <input type='int' name='amount' placeholder='Enter an amount to bet.' class='w-full mb-3 py-1 px-2 bg-transparent border border-slate-800 text-white rounded focus:outline-none'>
                     <p class =' mb-3 text-white text-center'>The amount of mines.</p>
                     <div class ='keuzeBomKnoppen'> 
                         <div class='flex flex-row h-auto my-1'>
@@ -185,7 +189,7 @@
             </script>
             <?php
             if (isset($_POST['amount'])) {
-                $_SESSION['mines']['bet'] = $_POST['amount'] * 100;
+                $_SESSION['mines']['bet'] = $_SESSION['amount'] * 100;
                 if ($_SESSION['mines']['bet'] <= $_SESSION['user']['balance']) {
                     $sql = 'UPDATE tblusers SET balance = balance - ' .  $_SESSION['mines']['bet'] . ' WHERE user_id = ' . $_SESSION['user']['user_id'];
                     $result = $mysqli->query($sql);
@@ -317,7 +321,7 @@
             </div>
             <div class='mt-6 '>
                 <form action='mines.php' method='POST'>
-                    <input type='text' name='amount' placeholder='Enter an amount to bet.' class='w-full mb-3 py-1 px-2 bg-transparent border border-slate-800 text-white rounded focus:outline-none'>
+                    <input type='int' name='amount' placeholder='Enter an amount to bet.' class='w-full mb-3 py-1 px-2 bg-transparent border border-slate-800 text-white rounded focus:outline-none'>
                     <p class =' mb-3 text-white text-center'>The amount of mines.</p>
                     <div class ='keuzeBomKnoppen'> 
                         <div class='flex flex-row h-auto my-1'>
@@ -444,7 +448,7 @@
             </div>
             <div class='mt-6 '>
                 <form action='mines.php' method='POST'>
-                    <input type='text' name='amount' placeholder='Enter an amount to bet.' class='w-full mb-3 py-1 px-2 bg-transparent border border-slate-800 text-white rounded focus:outline-none'>
+                    <input type='int' name='amount' placeholder='Enter an amount to bet.' class='w-full mb-3 py-1 px-2 bg-transparent border border-slate-800 text-white rounded focus:outline-none'>
                     <p class =' mb-3 text-white text-center'>The amount of mines.</p>
                     <div class ='keuzeBomKnoppen'> 
                         <div class='flex flex-row h-auto my-1'>

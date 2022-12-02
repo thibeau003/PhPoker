@@ -15,7 +15,7 @@
         
         echo '<a class="pt-20 text-white float-left ml-12 text-xl" href="./index.php">&#x2190 Back</a>';
 
-        if (isset($_POST['amount'])) {
+        if (isset($_POST['amount']) && isset($_SESSION['user'])) {
             $_SESSION['headsortails']['bet'] = $_POST['amount'] * 100;
             if ($_SESSION['headsortails']['bet'] <= $_SESSION['user']['balance']) {
                 $sql = 'UPDATE tblusers SET balance = balance - '.$_SESSION['headsortails']['bet'].' WHERE user_id = '.$_SESSION['user']['user_id'];

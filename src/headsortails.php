@@ -21,12 +21,12 @@
                 $sql = 'UPDATE tblusers SET balance = balance - '.$_SESSION['headsortails']['bet'].' WHERE user_id = '.$_SESSION['user']['user_id'];
                 $result = $mysqli->query($sql);
                 $_SESSION['user']['balance'] = $_SESSION['user']['balance'] - $_SESSION['headsortails']['bet'];
-                print $_SESSION['user']['balance'] / 100;
                 echo "<script>document.getElementById('balanceText').textContent = '$". $_SESSION['user']['balance'] / 100 ."'</script>";
                 echo "<br>";
 
                 $right = rand(0, 1);
 
+                echo "<div class='w-full flex justify-center'>";
                 switch ($right) {
                     case 0:
                         $right = "heads";
@@ -37,6 +37,7 @@
                         echo '<img src="./assets/coin/1.png" class="mx-auto">';
                         break;
                 }
+                echo "</div>";
                 
                 if(isset($_POST['guess0']) && $right == $_POST['guess0']){
                     $sql = 'UPDATE tblusers set balance = '.$_SESSION['headsortails']['bet']*1.9.' where user_id = '.$_SESSION['user']['user_id'];
@@ -44,7 +45,7 @@
                     $_SESSION['user']['balance'] = $_SESSION['user']['balance'] + $_SESSION['headsortails']['bet']*1.9;
                     echo "<script>document.getElementById('balanceText').textContent = '$". $_SESSION['user']['balance'] / 100 ."'</script>";
                     echo '
-                        <div class="container mx-auto pt-20">               
+                        <div class="container mx-auto pt-8">               
                             <div class="text-center">
                                 <div class="flex flex-row h-auto my-1 justify-center">
                                     <p class="text-white text-xl font-semibold">You have won!</p>
@@ -57,7 +58,7 @@
                     $_SESSION['user']['balance'] = $_SESSION['user']['balance'] + $_SESSION['headsortails']['bet']*1.9;
                     echo "<script>document.getElementById('balanceText').textContent = '$". $_SESSION['user']['balance'] / 100 ."'</script>";
                     echo '
-                        <div class="container mx-auto pt-20">               
+                        <div class="container mx-auto pt-8">               
                             <div class="text-center">
                                 <div class="flex flex-row h-auto my-1 justify-center">
                                     <p class="text-white text-xl font-semibold">You have won!</p>
@@ -66,7 +67,7 @@
                         </div>';
                 } else {
                     echo '
-                        <div class="container mx-auto pt-20">               
+                        <div class="container mx-auto pt-8">               
                             <div class="text-center">
                                 <div class="flex flex-row h-auto my-1 justify-center">
                                     <p class="text-white text-xl font-semibold">You have lost!</p>
@@ -114,7 +115,7 @@
                                 <button type="submit" name="guess1" value="tails" class="w-1/3 mx-1 rounded text-center text-white bg-slate-800">Tails</button>
                             </div>
                         </form>
-                        <p class="text-red-500 ">You should be logged in to play.</p>
+                        <p class="text-red-500">You should be logged in to play.</p>
                     </div>
             </div>';
         } else {

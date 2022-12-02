@@ -32,6 +32,9 @@
     }
     print_r($array);
 
+    $sql = "UPDATE tblusers SET balance = balance + " . $_POST['profit'] . " WHERE user_id = " . $_SESSION['user']['user_id'];
+    $resultaat = $mysqli->query($sql);
+    $_SESSION['user']['balance'] += round($_POST['profit'],2);
     echo "
     <div class='container mx-auto pt-20'>
         <p class='text-center text-xl font-semibold text-white'>Mines</p>
@@ -200,29 +203,24 @@
                 );
             </script>";
         }
-        echo $_SESSION['mines']['bet'];
     }
     ?>
     <?php
-    $profit = $_SESSION['mines']['bet'];
-    if ($_SESSION['bombAmount'] = '3') {
-        $winning = $profit * 1.08;
-        $profit += $winning;
-        print "test3";
-    } elseif ($_SESSION['bombAmount'] = '5') {
-        $winning = $profit * 1.16;
-        $profit += $winning;
-        print "test5";
-    } elseif ($_SESSION['bombAmount'] = '10') {
-        $winning = $profit * 1.70;
-        $profit += $winning;
-        print "test10";
-    } elseif ($_SESSION['bombAmount'] = '20') {
-        $winning = $profit * 3;
-        $profit += $winning;
-        print "test20";
-    } else {
-        print "fail";
-    }
+    if (isset ($_POST['amount'])){
+        $profit = $_SESSION['mines']['bet'];
+        if ($_SESSION['bombAmount'] = '3') {
+            $winning = $profit * 1.08;
+            $profit += $winning;
+        } elseif ($_SESSION['bombAmount'] = '5') {
+            $winning = $profit * 1.16;
+            $profit += $winning;
+        } elseif ($_SESSION['bombAmount'] = '10') {
+            $winning = $profit * 1.70;
+            $profit += $winning;
+        } elseif ($_SESSION['bombAmount'] = '20') {
+            $winning = $profit * 3;
+            $profit += $winning;
+        }
+}
     ?>
 </body>

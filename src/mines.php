@@ -33,7 +33,6 @@
     if (isset($_SESSION['user'])) {
         if (isset($_POST['amount'])) {
             $amount = intval($_POST['amount']);
-            print 'test';
         }
         if (isset($amount) && is_int($amount)) {
             if (isset($_POST['stopgame'])) {
@@ -160,7 +159,7 @@
                             </div>
                         </div>    
                     
-                    <input type='submit' value='stop Game' class='w-full cursor-pointer py-2 mt-2 bg-slate-800 rounded text-white'>
+                    <input type='submit' value='stop Game' id='stopgame' class='w-full cursor-pointer py-2 mt-2 bg-slate-800 rounded text-white'>
                 </form>
             </div>
         </div>
@@ -179,7 +178,7 @@
                         }
                         clickedButton.style.backgroundColor = '#990000'
                         document.getElementById('profit').value = 0
-                        document.getElementById('stopGame').value = 'Game Over'
+                        document.getElementById('stopgame').value = 'Game Over'
 
                     } else {
                         clickedButton.disabled = true;
@@ -212,19 +211,19 @@
             ?>
     <?php
             if (isset($_POST['amount'])) {
-                $profit = $_SESSION['mines']['bet'];
+                $_SESSION['profit'] = $_SESSION['mines']['bet'];
                 if ($_SESSION['bombAmount'] = '3') {
-                    $winning = $profit * 1.08;
-                    $profit += $winning;
+                    $winning = $_SESSION['profit'] * 1.08;
+                    $_SESSION['profit'] += $winning;
                 } elseif ($_SESSION['bombAmount'] = '5') {
-                    $winning = $profit * 1.16;
-                    $profit += $winning;
+                    $winning = $_SESSION['profit'] * 1.16;
+                    $_SESSION['profit'] += $winning;
                 } elseif ($_SESSION['bombAmount'] = '10') {
-                    $winning = $profit * 1.70;
-                    $profit += $winning;
+                    $winning = $_SESSION['profit'] * 1.70;
+                    $_SESSION['profit'] += $winning;
                 } elseif ($_SESSION['bombAmount'] = '20') {
-                    $winning = $profit * 3;
-                    $profit += $winning;
+                    $winning = $_SESSION['profit'] * 3;
+                    $_SESSION['profit'] += $winning;
                 }
             }
         } else {

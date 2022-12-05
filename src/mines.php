@@ -34,7 +34,7 @@
         if (isset($_POST['amount'])) {
             $amount = intval($_POST['amount']);
         }
-        if (isset($amount) && is_int($amount)) {
+        if (isset($amount) && is_int($amount) && !empty($amount)) {
             if (isset($_POST['stopgame'])) {
                 $sql = "UPDATE tblusers SET balance = balance + " . $_POST['profit'] . " WHERE user_id = " . $_SESSION['user']['user_id'];
                 $resultaat = $mysqli->query($sql);
@@ -166,26 +166,6 @@
     </div>
         ";
     ?>
-            <script>
-                function onClick(ButtonId) {
-                    const clickedButton = document.getElementById(ButtonId)
-                    const valuesButton = <?php echo json_encode($_SESSION['mines']) ?>
-
-                    if (valuesButton[clickedButton.id] == 'Bom') {
-
-                        for (let i = 0; i < valuesButton.length; i++) {
-                            document.getElementById(i).disabled = true;
-                        }
-                        clickedButton.style.backgroundColor = '#990000'
-                        document.getElementById('profit').value = 0
-                        document.getElementById('stopgame').value = 'Game Over'
-
-                    } else {
-                        clickedButton.disabled = true;
-                        clickedButton.style.backgroundColor = '#005900'
-                    }
-                }
-            </script>
             <?php
             if (isset($amount)) {
                 $_SESSION['mines']['bet'] = $amount * 100;
@@ -209,6 +189,27 @@
                 }
             }
             ?>
+            <script>
+                function onClick(ButtonId) {
+                    const clickedButton = document.getElementById(ButtonId)
+                    const valuesButton = <?php echo json_encode($_SESSION['mines']) ?>
+
+                    if (valuesButton[clickedButton.id] == 'Bom') {
+
+                        for (let i = 0; i < valuesButton.length; i++) {
+                            document.getElementById(i).disabled = true;
+                        }
+                        clickedButton.style.backgroundColor = '#990000'
+                        document.getElementById('profit').value = 0
+                        document.getElementById('stopgame').value = 'Game Over'
+
+                    } else {
+                        clickedButton.disabled = true;
+                        clickedButton.style.backgroundColor = '#005900'
+                    }
+                }
+            </script>
+
     <?php
             if (isset($_POST['amount'])) {
                 $_SESSION['profit'] = $_SESSION['mines']['bet'];

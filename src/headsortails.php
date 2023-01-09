@@ -12,86 +12,130 @@
     <?php
         require_once "./header.php";
         require_once "./connect.php";
+        
+        echo '<a class="pt-20 text-white float-left ml-12 text-xl" href="./index.php">&#x2190 Back</a>';
 
-        if (isset($_POST['bet'])) {
+        if (isset($_POST['amount']) && isset($_SESSION['user'])) {
             $_SESSION['headsortails']['bet'] = $_POST['amount'] * 100;
             if ($_SESSION['headsortails']['bet'] <= $_SESSION['user']['balance']) {
                 $sql = 'UPDATE tblusers SET balance = balance - '.$_SESSION['headsortails']['bet'].' WHERE user_id = '.$_SESSION['user']['user_id'];
                 $result = $mysqli->query($sql);
                 $_SESSION['user']['balance'] = $_SESSION['user']['balance'] - $_SESSION['headsortails']['bet'];
-                echo "
-                        <script>
-                            $.ajax(
-                            './updateUserSession.php?user_id=". $_SESSION['user']['user_id'] ."',
-                            {
-                                success: function(data) {
-                                    console.log(data)
-                                    document.getElementById('balanceText').textContent = '$' + ". $_SESSION['user']['balance'] ." / 100
-                                },
-                                error: function() {
-                                    alert('There was some error performing the AJAX call!');
-                                }
-                            }
-                            );
-                        </script>"
-                        ;
+                echo "<script>document.getElementById('balanceText').textContent = '$". $_SESSION['user']['balance'] / 100 ."'</script>";
                 echo "<br>";
+
+                $right = rand(0, 1);
+
+                echo "<div class='w-full flex justify-center'>";
+                switch ($right) {
+                    case 0:
+                        $right = "heads";
+                        echo '<img src="./assets/coin/0.png" class="mx-auto">';
+                        break;
+                    case 1:
+                        $right = "tails";
+                        echo '<img src="./assets/coin/1.png" class="mx-auto">';
+                        break;
+                }
+                echo "</div>";
+                
+                if(isset($_POST['guess0']) && $right == $_POST['guess0']){
+                    $sql = 'UPDATE tblusers set balance = '.$_SESSION['headsortails']['bet']*1.9.' where user_id = '.$_SESSION['user']['user_id'];
+                    $result = $mysqli->query($sql);
+                    $_SESSION['user']['balance'] = $_SESSION['user']['balance'] + $_SESSION['headsortails']['bet']*1.9;
+                    echo "<script>document.getElementById('balanceText').textContent = '$". $_SESSION['user']['balance'] / 100 ."'</script>";
+                    echo '
+                        <div class="container mx-auto pt-8">               
+                            <div class="text-center">
+                                <div class="flex flex-row h-auto my-1 justify-center">
+                                    <p class="text-white text-xl font-semibold">You have won!</p>
+                                </div>
+                             </div>
+                        </div>';
+                } else if (isset($_POST['guess1']) && $right == $_POST['guess1']) {
+                    $sql = 'UPDATE tblusers set balance = '.$_SESSION['headsortails']['bet']*1.9.' where user_id = '.$_SESSION['user']['user_id'];
+                    $result = $mysqli->query($sql);
+                    $_SESSION['user']['balance'] = $_SESSION['user']['balance'] + $_SESSION['headsortails']['bet']*1.9;
+                    echo "<script>document.getElementById('balanceText').textContent = '$". $_SESSION['user']['balance'] / 100 ."'</script>";
+                    echo '
+                        <div class="container mx-auto pt-8">               
+                            <div class="text-center">
+                                <div class="flex flex-row h-auto my-1 justify-center">
+                                    <p class="text-white text-xl font-semibold">You have won!</p>
+                                </div>
+                             </div>
+                        </div>';
+                } else {
+                    echo '
+                        <div class="container mx-auto pt-8">               
+                            <div class="text-center">
+                                <div class="flex flex-row h-auto my-1 justify-center">
+                                    <p class="text-white text-xl font-semibold">You have lost!</p>
+                                </div>
+                             </div>
+                        </div>';
+                }
+
+                echo '
+                <div class="container mx-auto pt-20">               
+                    <div class="text-center">
+                        <div class="flex flex-row h-auto my-1 justify-center">
+                            <a class="text-white text-xl font-semibold" href="headsortails.php">New game</a>
+                        </div>
+                    </div>
+                </div>';
+                
+
+            } else {
+                echo '
+                <div class="container mx-auto pt-20">
+                    <p class="text-center text-xl font-semibold text-white">Heads or tails</p>                
+                        <div class="text-center">
+                            <img src="./assets/coin/start.png" class="mx-auto" width="500" height="600">
+                            <form method="post" class="text-center">
+                                <input type="text" required class="py-2 mt-2 bg-slate-800 rounded text-white text-center" name="amount">
+                                <div class="flex flex-row h-auto my-1 justify-center" name="guess">
+                                    <button type="submit" name="guess0" value="heads" class="w-1/3 mx-1 rounded text-center text-white bg-slate-800">Heads</button>
+                                    <button type="submit" name="guess1" value="tails" class="w-1/3 mx-1 rounded text-center text-white bg-slate-800">Tails</button>
+                                </div>
+                            </form>
+                        </div>
+                </div>';
             }
+        } else if (!(isset($_SESSION['user']))){
+            echo '
+            <div class="container mx-auto pt-20">
+                <p class="text-center text-xl font-semibold text-white">Heads or tails</p>                
+                    <div class="text-center">
+                        <img src="./assets/coin/start.png" class="mx-auto" width="500" height="600">
+                        <form method="post" class="text-center">
+                            <input type="text" required class="py-2 mt-2 bg-slate-800 rounded text-white text-center" name="amount">
+                            <div class="flex flex-row h-auto my-1 justify-center" name="guess">
+                                <button type="submit" name="guess0" value="heads" class="w-1/3 mx-1 rounded text-center text-white bg-slate-800">Heads</button>
+                                <button type="submit" name="guess1" value="tails" class="w-1/3 mx-1 rounded text-center text-white bg-slate-800">Tails</button>
+                            </div>
+                        </form>
+                        <p class="text-red-500">You should be logged in to play.</p>
+                    </div>
+            </div>';
         } else {
             echo '
                 <div class="container mx-auto pt-20">
                     <p class="text-center text-xl font-semibold text-white">Heads or tails</p>                
-                        <div class="mt-10 w-2/3 mx-auto">
-                            <form method="post">
-                                <button>
+                        <div class="text-center">
+                            <img src="./assets/coin/start.png" class="mx-auto">
+                            <form method="post" class="text-center">
+                                <input type="text" required class="py-2 mt-2 bg-slate-800 rounded text-white text-center" name="amount">
+                                <div class="flex flex-row h-auto my-1 justify-center" name="guess">
+                                    <button type="submit" name="guess0" value="heads" class="w-1/3 mx-1 rounded text-center text-white bg-slate-800">Heads</button>
+                                    <button type="submit" name="guess1" value="tails" class="w-1/3 mx-1 rounded text-center text-white bg-slate-800">Tails</button>
+                                </div>
+                            </form>
                         </div>
                 </div>';    
         }
 
-        if (!isset($_POST['bet'])) {
-            echo '
-                <div class="h-screen w-screen flex justify-center items-center">
-                    <div class="h-1/2 w-1/3 rounded-xl">
-                        <form class="h-full flex flex-col justify-between mx-5" method="POST">
-                            <div class="w-full">
-                                <div class="w-3/4 mx-auto">
-                                    <label for="amount">Amount</label>
-                                    <br>
-                                    <input class="w-full bg-transparent border-b-2 border-slate-700 focus:outline-none" type="text" id="amount" name="amount" required>
-                                </div>
-                            </div>
-                            <button type="submit" name="bet">Bet!</button>
-                        </form>
-                    </div>
-                </div>
-            ';
-        } else {
-
-        $_SESSION['blackjack']['bet'] = $_POST['amount'] * 100;
-
-            if ($_SESSION['blackjack']['bet'] <= $_SESSION['user']['balance']) {
-                $sql = 'UPDATE tblusers SET balance = balance - '.$_SESSION['blackjack']['bet'].' WHERE user_id = '.$_SESSION['user']['user_id'];
-                $result = $mysqli->query($sql);
-                $_SESSION['user']['balance'] = $_SESSION['user']['balance'] - $_SESSION['blackjack']['bet'];
-                echo "
-                        <script>
-                            $.ajax(
-                            './updateUserSession.php?user_id=". $_SESSION['user']['user_id'] ."',
-                            {
-                                success: function(data) {
-                                    console.log(data)
-                                    document.getElementById('balanceText').textContent = '$' + ". $_SESSION['user']['balance'] ." / 100
-                                },
-                                error: function() {
-                                    alert('There was some error performing the AJAX call!');
-                                }
-                            }
-                            );
-                        </script>"
-                        ;
-                echo "<br>";
-            }
-        }
+       
 
 
 

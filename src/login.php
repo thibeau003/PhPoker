@@ -21,15 +21,13 @@
         $result = $mysqli->query($query);
         $row = $result->fetch_assoc();
 
-        print_r($row);
-
         if (empty($row)) {
             header("location: ./login.php?wrongcredentials");
             exit();
         }
         
         $_SESSION["user"] = $row;
-        header("location: ./");
+        header("location: ./index.php");
     }
     ?>
 

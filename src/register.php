@@ -31,8 +31,6 @@
             $result = $mysqli->query($query);
             $row = mysqli_fetch_assoc($result);
 
-            print_r($row);
-            
             $_SESSION["user"] = $row;
             header("location: ./index.php");
         } else if (mysqli_num_rows($resultuser) > 0) {

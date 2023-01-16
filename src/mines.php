@@ -32,13 +32,15 @@
     }
     if (isset($_SESSION['user'])) {
         if (isset($_POST['amount'])) {
-            $amount = intval($_POST['amount']);
+            $_SESSION['amount'] = $_POST['amount'];
+            $amount = intval($_SESSION['amount']);
         }
         if (isset($amount) && is_int($amount) && !empty($amount)) {
             if (isset($_POST['stopgame'])) {
-                $sql = "UPDATE tblusers SET balance = balance + " . $_POST['profit'] . " WHERE user_id = " . $_SESSION['user']['user_id'];
+                print "test";
+                $sql = "UPDATE tblusers SET balance = balance + " . $_SESSION['mines']['bet'] . " WHERE user_id = " . $_SESSION['user']['user_id'];
                 $resultaat = $mysqli->query($sql);
-                $_SESSION['user']['balance'] += round($_POST['profit'], 2);
+                $_SESSION['user']['balance'] += round($_SESSION['mines']['bet'], 2);
             }
             echo "
     <div class='container mx-auto pt-20'>
@@ -167,7 +169,7 @@
         ";
     ?>
             <?php
-            if (isset($amount)) {
+            if (isset($amount) && !empty($amount)) {
                 $_SESSION['mines']['bet'] = $amount * 100;
                 if ($_SESSION['mines']['bet'] <= $_SESSION['user']['balance']) {
                     $sql = 'UPDATE tblusers SET balance = balance - ' .  $_SESSION['mines']['bet'] . ' WHERE user_id = ' . $_SESSION['user']['user_id'];
@@ -211,20 +213,24 @@
             </script>
 
     <?php
-            if (isset($_POST['amount'])) {
-                $_SESSION['profit'] = $_SESSION['mines']['bet'];
+            if (isset($_SESSION['amount'])) {
+                if (!empty($_POST['amount'])) {
+                    $winning = 0;
+                    print $winning;
+                }
                 if ($_SESSION['bombAmount'] = '3') {
-                    $winning = $_SESSION['profit'] * 1.08;
-                    $_SESSION['profit'] += $winning;
+                    $winning = $_SESSION['mines']['bet'] * 1.08;
+                    $_SESSION['mines']['bet'] += $winning;
+                    print $winning;
                 } elseif ($_SESSION['bombAmount'] = '5') {
-                    $winning = $_SESSION['profit'] * 1.16;
-                    $_SESSION['profit'] += $winning;
+                    $winning = $_SESSION['mines']['bet'] * 1.16;
+                    $_SESSION['mines']['bet'] += $winning;
                 } elseif ($_SESSION['bombAmount'] = '10') {
-                    $winning = $_SESSION['profit'] * 1.70;
-                    $_SESSION['profit'] += $winning;
+                    $winning = $_SESSION['mines']['bet'] * 1.70;
+                    $_SESSION['mines']['bet'] += $winning;
                 } elseif ($_SESSION['bombAmount'] = '20') {
-                    $winning = $_SESSION['profit'] * 3;
-                    $_SESSION['profit'] += $winning;
+                    $winning = $_SESSION['mines']['bet'] * 3;
+                    $_SESSION['mines']['bet'] += $winning;
                 }
             }
         } else {
@@ -476,6 +482,7 @@
                     
                     <input type='submit' value='Start Game' class='w-full cursor-pointer py-2 mt-2 bg-slate-800 rounded text-white'>
                 </form>
+                <p class='text-red-500 mt-1'>You should be logged in to play.</p>
             </div>
         </div>
     </div>";

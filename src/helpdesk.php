@@ -22,8 +22,10 @@
         $typeOfProblem = $_POST["problem"];
         $message = $_POST["message"];
 
-        $query = "INSERT INTO `tblhelpdesk` (`user_id`, `type_problem`, `message`) VALUES ('$userId', '$typeOfProblem', '$message');";
-        $result = $mysqli->query($query);
+        $stmt = $mysqli->prepare("INSERT INTO `tblhelpdesk` (`user_id`, `type_problem`, `message`) VALUES ('?', '?', '?')");
+        $stmt->bind_param('isi', $userId, $typeOfProblem, $message);
+        $stmt->execute(); 
+        $result = $stmt->get_result();
 
         header("location: ./helpdesk.php?messagesend");
     }

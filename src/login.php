@@ -30,7 +30,7 @@
         }
         
         $_SESSION["user"] = $row;
-        header("location: ./");
+        header("location: ./index.php");
     }
     ?>
 

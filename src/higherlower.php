@@ -13,7 +13,7 @@
     <?php
     include "./tailwind.php";
     include "./header.php";
-    include "./connect.php";	
+    include "./connect.php";
     if ($_SESSION['bet']) {
         echo
         '<form method="post">
@@ -107,7 +107,7 @@
             print '
                 <div>
                 <form action="" method="post">
-                    <button class="text-xl p-1 hover:underline text-center" type="submit">Next Card</button>
+                    <button class="text-xl p-1 hover:underline text-center" type="submit" name="nextButton">Next Card</button>
                 </form>
                 <button class="bg-slate-800 square-lg p-5 mb-5 rounded" type="submit" onclick="changeOpacity();" name="higher">Higher &#8593</button>
                 <button class="bg-slate-800 square-lg p-5 mb-5 rounded" type="submit" onclick="changeOpacity();" name="lower">Lower &#8595</button>
@@ -115,8 +115,10 @@
                 </div>
                 ' . "Bet: $" . $_SESSION['bet'] . ".00" . '
                 ';
+            if (isset($_POST['nextButton'])) {
+                $_SESSION['user']['balance'] -= $_SESSION['bet'] * 100;
+            }
         }
-
         ?>
     </div>
 </body>

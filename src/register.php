@@ -41,6 +41,16 @@
     } else if (mysqli_num_rows($resultemail) > 0) {
         header("Location: ./register.php?usedemail");
         exit();
+            $_SESSION["user"] = $row;
+            header("location: ./index.php");
+        } else if (mysqli_num_rows($resultuser) > 0) {
+            header("Location: ./register.php?useduser");
+            exit();
+        } else if (mysqli_num_rows($resultemail) > 0) {
+            header("Location: ./register.php?usedemail");
+            exit();
+        }
+
     }
     ?>
 

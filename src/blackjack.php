@@ -222,7 +222,7 @@
     }
     echo '
         </form>
-        <div class=" text-center text-4xl">' . getValueOfHand("player") . '</div>
+        <div class=" text-center text-4xl">' . getValueOfHand("player") . ' (You)</div>
       </div>
       <div class="col-span-4">
         <div class="h-full grid px-16 grid-rows-2">

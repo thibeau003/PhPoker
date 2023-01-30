@@ -51,7 +51,6 @@
             exit();
         }
 
-    }
     ?>
 
     <div class="h-screen w-screen flex justify-center items-center text-white">

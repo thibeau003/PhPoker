@@ -131,19 +131,20 @@
             </div>';
         } else {
             echo '
-                <div class="container mx-auto pt-20">
-                    <p class="text-center text-xl font-semibold text-white">Heads or tails</p>                
-                        <div class="text-center">
-                            <img src="./assets/coin/start.png" class="mx-auto">
-                            <form method="post" class="text-center">
-                                <input type="text" required class="py-2 mt-2 bg-slate-800 rounded text-white text-center" name="amount">
-                                <div class="flex flex-row h-auto my-1 justify-center" name="guess">
-                                    <button type="submit" name="guess0" value="heads" class="w-1/3 mx-1 rounded text-center text-white bg-slate-800">Heads</button>
-                                    <button type="submit" name="guess1" value="tails" class="w-1/3 mx-1 rounded text-center text-white bg-slate-800">Tails</button>
-                                </div>
-                            </form>
-                        </div>
-                </div>';    
+            <div class="container mx-auto pt-20">
+                <p class="text-center text-xl font-semibold text-white">Heads or tails</p>                
+                    <div class="text-center">
+                        <img src="./assets/coin/start.png" class="mx-auto" width="500" height="600">
+                        <form method="post" class="text-center">
+                            <input type="text" required class="py-2 mt-2 bg-slate-800 rounded text-white text-center" name="amount">
+                            <div class="flex flex-row h-auto my-1 justify-center" name="guess">
+                                <button type="submit" name="guess0" value="heads" class="w-1/3 mx-1 rounded text-center text-white bg-slate-800">Heads</button>
+                                <button type="submit" name="guess1" value="tails" class="w-1/3 mx-1 rounded text-center text-white bg-slate-800">Tails</button>
+                            </div>
+                        </form>
+                        <p class="text-red-500">Not enough money.</p>
+                    </div>
+            </div>';  
         }
 
        

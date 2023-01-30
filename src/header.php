@@ -15,11 +15,10 @@ if (isset($_SESSION["user"])) {
     $balance = $user['balance'];
 
     echo "
-            <header>
+            <div>
                 <nav class='fixed w-screen bg-slate-800 px-4 lg:px-6 py-2.5'>
                     <div class='flex flex-wrap justify-between items-center mx-auto max-w-screen-xl'>
                         <a href='./' class='flex items-center'>
-                            <!-- <img src='https://flowbite.com/docs/images/logo.svg' class='mr-3 h-6 sm:h-9' alt='Flowbite Logo' /> -->
                             <span class='self-center text-xl font-bold whitespace-nowrap text-white'>PhPoker</span>
                         </a>
                         <div class='flex items-center lg:order-2'>
@@ -29,13 +28,13 @@ if (isset($_SESSION["user"])) {
                                 </a>
                             </div>
 
-                            <button type='button' onclick='handleAccountMenu()' class='aspect-square flex mr-3 rounded-full md:mr-0 bg-slate-900 text-white' id='user-menu-button' aria-expanded='false' data-dropdown-toggle='user-dropdown' data-dropdown-placement='bottom'>
+                            <button type='button' onclick='handleAccountMenu()' class='aspect-square flex mr-3 rounded-full md:mr-0 bg-slate-900 text-white' id='user-menu-button'>
                                 <span class='p-2'>" . $first2Characters . "</span>
                             </button>
       
                             <div class='absolute w-auto top-14 ml-32 float-right'>
                                 <div class='hidden z-50 mt-2 text-white list-none bg-slate-800 rounded divide-y divide-slate-900 shadow' id='user-dropdown'>
-                                    <ul class='py-1' aria-labelledby='user-menu-button'
+                                    <ul class='py-1'>
                                         <li>
                                             <a href='./helpdesk.php' class='block py-2 px-4 text-sm text-white'>Helpdesk</a>
                                         </li>
@@ -64,28 +63,27 @@ if (isset($_SESSION["user"])) {
                                     <a href='./blackjack.php' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Blackjack</a>
                                 </li>
                                 <li>
-                                    <a href='./headsortails.php' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0 '>Heads or tails</a>
+                                    <a href='./headsortails.php' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Heads or tails</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </nav>
-            </header>
+            </div>
         ";
 } else {
     echo "
-            <header>
+            <div>
                 <nav class='fixed w-screen bg-slate-800 px-4 lg:px-6 py-2.5'>
                     <div class='flex flex-wrap justify-between items-center mx-auto max-w-screen-xl'>
                         <a href='./' class='flex items-center'>
-                            <!-- <img src='https://flowbite.com/docs/images/logo.svg' class='mr-3 h-6 sm:h-9' alt='Flowbite Logo' /> -->
                             <span class='self-center text-xl font-bold whitespace-nowrap text-white'>PhPoker</span>
                         </a>
                         <div class='flex items-center lg:order-2'>
                             <a href='./login.php' class='text-white font-semibold rounded-lg px-4 lg:px-5 py-1 lg:py-1.5 mr-1 focus:outline-none'>Login</a>
                             <a href='./register.php' class='text-white font-semibold rounded-lg px-4 lg:px-5 py-1 lg:py-1.5 mr-1 focus:outline-none'>Register</a>
             
-                            <button data-collapse-toggle='mobile-menu-2' type='button' class='inline-flex items-center p-2 ml-1 text-white rounded-lg lg:hidden'>
+                            <button class='inline-flex items-center p-2 ml-1 text-white rounded-lg lg:hidden'>
                                 <svg class='w-6 h-6' fill='currentColor' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'>
                                     <path fill-rule='evenodd' d='M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z' clip-rule='evenodd'></path>
                                 </svg>
@@ -115,13 +113,15 @@ if (isset($_SESSION["user"])) {
                         </div>
                     </div>
                 </nav>
-            </header>
+            </div>
         ";
 }
-?>
 
-<script>
-    function handleAccountMenu() {
-        document.getElementById('user-dropdown').classList.toggle("hidden")
-    }
-</script>
+echo "
+    <script>
+        function handleAccountMenu() {
+            document.getElementById('user-dropdown').classList.toggle('hidden')
+        }
+    </script>
+";
+?>

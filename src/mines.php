@@ -33,14 +33,21 @@
     if (isset($_SESSION['user'])) {
         if (isset($_POST['amount'])) {
             $_SESSION['amount'] = $_POST['amount'];
+            $amount = intval($_SESSION['amount']);
         }
-        if (isset($_SESSION['amount'])) {
+        if (isset($amount) && is_int($amount) && !empty($amount)) {
             if (isset($_POST['stopgame'])) {
-                $sql = "UPDATE tblusers SET balance = balance + " . $_POST['profit'] . " WHERE user_id = " . $_SESSION['user']['user_id'];
-                $resultaat = $mysqli->query($sql);
-                $_SESSION['user']['balance'] += round($_POST['profit'], 2);
+                $stmt = $mysqli->prepare("UPDATE tblusers SET balance = balance + ? WHERE user_id = ?");
+                $stmt->bind_param('ii', $_POST['profit'], $_SESSION['user']['user_id']);
+                $stmt->execute(); 
+                $result = $stmt->get_result();
+
+                // $_SESSION['user']['balance'] += round($_POST['profit'], 2);
+                print "test";
+                // $sql = "UPDATE tblusers SET balance = balance + " . $_SESSION['mines']['bet'] . " WHERE user_id = " . $_SESSION['user']['user_id'];
+                // $resultaat = $mysqli->query($sql);
+                $_SESSION['user']['balance'] += round($_SESSION['mines']['bet'], 2);
             }
-            print $_POST['profit'];
             echo "
     <div class='container mx-auto pt-20'>
         <p class='text-center text-xl font-semibold text-white'>Mines</p>
@@ -133,8 +140,8 @@
                 </div>
             </div>
             <div class='mt-6 '>
-                <form action='mines.php' method='POST'>
-                    <input type='int' name='amount' placeholder='Enter an amount to bet.' class='w-full mb-3 py-1 px-2 bg-transparent border border-slate-800 text-white rounded focus:outline-none'>
+                <form action='' method='POST'>
+                    <input type='text' name='amount' placeholder='Enter an amount to bet.' class='w-full mb-3 py-1 px-2 bg-transparent border border-slate-800 text-white rounded focus:outline-none'>
                     <p class =' mb-3 text-white text-center'>The amount of mines.</p>
                     <div class ='keuzeBomKnoppen'> 
                         <div class='flex flex-row h-auto my-1'>
@@ -160,39 +167,22 @@
                             </div>
                         </div>    
                     
-                    <input type='submit' value='Start Game' class='w-full cursor-pointer py-2 mt-2 bg-slate-800 rounded text-white'>
+                    <input type='submit' value='stop Game' id='stopgame' class='w-full cursor-pointer py-2 mt-2 bg-slate-800 rounded text-white'>
                 </form>
             </div>
         </div>
     </div>
         ";
     ?>
-            <script>
-                function onClick(ButtonId) {
-                    const clickedButton = document.getElementById(ButtonId)
-                    const valuesButton = <?php echo json_encode($_SESSION['mines']) ?>
-
-                    if (valuesButton[clickedButton.id] == 'Bom') {
-
-                        for (let i = 0; i < valuesButton.length; i++) {
-                            document.getElementById(i).disabled = true;
-                        }
-                        clickedButton.style.backgroundColor = '#990000'
-                        document.getElementById('profit').value = 0
-                        document.getElementById('stopGame').value = 'Game Over'
-
-                    } else {
-                        clickedButton.disabled = true;
-                        clickedButton.style.backgroundColor = '#005900'
-                    }
-                }
-            </script>
             <?php
-            if (isset($_POST['amount'])) {
-                $_SESSION['mines']['bet'] = $_SESSION['amount'] * 100;
+            if (isset($amount) && !empty($amount)) {
+                $_SESSION['mines']['bet'] = $amount * 100;
                 if ($_SESSION['mines']['bet'] <= $_SESSION['user']['balance']) {
-                    $sql = 'UPDATE tblusers SET balance = balance - ' .  $_SESSION['mines']['bet'] . ' WHERE user_id = ' . $_SESSION['user']['user_id'];
-                    $result = $mysqli->query($sql);
+                    $stmt = $mysqli->prepare("UPDATE tblusers SET balance = balance - ? WHERE user_id = ?");
+                    $stmt->bind_param('ii', $_SESSION['mines']['bet'], $_SESSION['user']['user_id']);
+                    $stmt->execute(); 
+                    $result = $stmt->get_result();
+
                     $_SESSION['user']['balance'] = $_SESSION['user']['balance'] - $_SESSION['mines']['bet'];
                     echo "
             <script>
@@ -210,21 +200,46 @@
                 }
             }
             ?>
+            <script>
+                function onClick(ButtonId) {
+                    const clickedButton = document.getElementById(ButtonId)
+                    const valuesButton = <?php echo json_encode($_SESSION['mines']) ?>
+
+                    if (valuesButton[clickedButton.id] == 'Bom') {
+
+                        for (let i = 0; i < valuesButton.length; i++) {
+                            document.getElementById(i).disabled = true;
+                        }
+                        clickedButton.style.backgroundColor = '#990000'
+                        document.getElementById('profit').value = 0
+                        document.getElementById('stopgame').value = 'Game Over'
+
+                    } else {
+                        clickedButton.disabled = true;
+                        clickedButton.style.backgroundColor = '#005900'
+                    }
+                }
+            </script>
+
     <?php
-            if (isset($_POST['amount'])) {
-                $profit = $_SESSION['mines']['bet'];
+            if (isset($_SESSION['amount'])) {
+                if (!empty($_POST['amount'])) {
+                    $winning = 0;
+                    print $winning;
+                }
                 if ($_SESSION['bombAmount'] = '3') {
-                    $winning = $profit * 1.08;
-                    $profit += $winning;
+                    $winning = $_SESSION['mines']['bet'] * 1.08;
+                    $_SESSION['mines']['bet'] += $winning;
+                    print $winning;
                 } elseif ($_SESSION['bombAmount'] = '5') {
-                    $winning = $profit * 1.16;
-                    $profit += $winning;
+                    $winning = $_SESSION['mines']['bet'] * 1.16;
+                    $_SESSION['mines']['bet'] += $winning;
                 } elseif ($_SESSION['bombAmount'] = '10') {
-                    $winning = $profit * 1.70;
-                    $profit += $winning;
+                    $winning = $_SESSION['mines']['bet'] * 1.70;
+                    $_SESSION['mines']['bet'] += $winning;
                 } elseif ($_SESSION['bombAmount'] = '20') {
-                    $winning = $profit * 3;
-                    $profit += $winning;
+                    $winning = $_SESSION['mines']['bet'] * 3;
+                    $_SESSION['mines']['bet'] += $winning;
                 }
             }
         } else {
@@ -320,8 +335,8 @@
                 </div>
             </div>
             <div class='mt-6 '>
-                <form action='mines.php' method='POST'>
-                    <input type='int' name='amount' placeholder='Enter an amount to bet.' class='w-full mb-3 py-1 px-2 bg-transparent border border-slate-800 text-white rounded focus:outline-none'>
+                <form action='' method='POST'>
+                    <input type='text' name='amount' placeholder='Enter an amount to bet.' class='w-full mb-3 py-1 px-2 bg-transparent border border-slate-800 text-white rounded focus:outline-none'>
                     <p class =' mb-3 text-white text-center'>The amount of mines.</p>
                     <div class ='keuzeBomKnoppen'> 
                         <div class='flex flex-row h-auto my-1'>
@@ -447,8 +462,8 @@
                 </div>
             </div>
             <div class='mt-6 '>
-                <form action='mines.php' method='POST'>
-                    <input type='int' name='amount' placeholder='Enter an amount to bet.' class='w-full mb-3 py-1 px-2 bg-transparent border border-slate-800 text-white rounded focus:outline-none'>
+                <form action='' method='POST'>
+                    <input type='text' name='amount' placeholder='Enter an amount to bet.' class='w-full mb-3 py-1 px-2 bg-transparent border border-slate-800 text-white rounded focus:outline-none'>
                     <p class =' mb-3 text-white text-center'>The amount of mines.</p>
                     <div class ='keuzeBomKnoppen'> 
                         <div class='flex flex-row h-auto my-1'>
@@ -476,6 +491,7 @@
                     
                     <input type='submit' value='Start Game' class='w-full cursor-pointer py-2 mt-2 bg-slate-800 rounded text-white'>
                 </form>
+                <p class='text-red-500 mt-1'>You should be logged in to play.</p>
             </div>
         </div>
     </div>";

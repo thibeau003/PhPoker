@@ -16,19 +16,23 @@
 
     if (isset($_POST["settings"])) {
 
-        if (!empty($_POST["username"])) {
-            $sql = "UPDATE tblusers SET username = '" . $_POST["username"] . "' WHERE user_id = " . $_SESSION['user']['user_id'];
-            $resultaat = $mysqli->query($sql);
+        if (!empty($_POST["username"])) {        
+            $stmt = $mysqli->prepare("UPDATE tblusers SET username = ? WHERE user_id = ?");
+            $stmt->bind_param('si', $_POST["username"], $_SESSION['user']['user_id']);
+            $stmt->execute(); 
+            $result = $stmt->get_result();
         }
-        if (!empty($_POST["email"])) {
-
-            $sql = "UPDATE tblusers SET email = '" . $_POST["email"] . "' WHERE user_id = " . $_SESSION['user']['user_id'];
-            $resultaat = $mysqli->query($sql);
+        if (!empty($_POST["email"])) {  
+            $stmt = $mysqli->prepare("UPDATE tblusers SET email = ? WHERE user_id = ?");
+            $stmt->bind_param('si', $_POST["email"], $_SESSION['user']['user_id']);
+            $stmt->execute(); 
+            $result = $stmt->get_result();
         }
-        if (!empty($_POST["password"])) {
-
-            $sql = "UPDATE tblusers SET password = '" . hash("sha256", $_POST["password"]) . "' WHERE user_id = " . $_SESSION['user']['user_id'];
-            $resultaat = $mysqli->query($sql);
+        if (!empty($_POST["password"])) {  
+            $stmt = $mysqli->prepare("UPDATE tblusers SET password = ? WHERE user_id = ?");
+            $stmt->bind_param('si', hash("sha256", $_POST["password"]), $_SESSION['user']['user_id']);
+            $stmt->execute(); 
+            $result = $stmt->get_result();
         }
     } else {
         header("Location: ./");

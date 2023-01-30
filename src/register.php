@@ -19,18 +19,28 @@
         $password = hash("sha256", $_POST["password"]);
 
         
-        $sqluser = "SELECT username FROM tblusers WHERE username='".$user."'";
-        $resultuser = $mysqli->query($sqluser);
-        $sqlemail = "SELECT email FROM tblusers WHERE email='".$email."'";
-        $resultemail = $mysqli->query($sqlemail);
+        $stmt = $mysqli->prepare("INSERT INTO tblusers (username, email, password) VALUES (?, ?, ?)");
+        $stmt->bind_param('sss', $user, $email, $password);
+        $stmt->execute(); 
+        $result = $stmt->get_result();
+        
+        $stmt = $mysqli->prepare("SELECT `user_id`, `username`, `email`, `balance`, `admin`, `join_date` FROM `tblusers` WHERE `email` = ? AND `password` = ?");
+        $stmt->bind_param('ss', $email, $password);
+        $stmt->execute(); 
+        $result = $stmt->get_result();
 
-        if (mysqli_num_rows($resultuser) == 0 && mysqli_num_rows($resultemail) == 0) {
-            $sql = "INSERT INTO tblusers (username, email, password) VALUES ('".$user."', '".$email."', '".$password."')";
-            $resultsql = $mysqli->query($sql);
-            $query = "SELECT `user_id`, `username`, `email`, `balance`, `admin`, `join_date` FROM `tblusers` WHERE `email` = '" . $email . "' AND `password` = '" . $password . "';";
-            $result = $mysqli->query($query);
-            $row = mysqli_fetch_assoc($result);
+        $row = mysqli_fetch_assoc($result);
 
+        print_r($row);
+            
+        $_SESSION["user"] = $row;
+        header("location: ./index.php");
+    } else if (mysqli_num_rows($resultuser) > 0) {
+        header("Location: ./register.php?useduser");
+        exit();
+    } else if (mysqli_num_rows($resultemail) > 0) {
+        header("Location: ./register.php?usedemail");
+        exit();
             $_SESSION["user"] = $row;
             header("location: ./index.php");
         } else if (mysqli_num_rows($resultuser) > 0) {
@@ -41,7 +51,6 @@
             exit();
         }
 
-    }
     ?>
 
     <div class="h-screen w-screen flex justify-center items-center text-white">

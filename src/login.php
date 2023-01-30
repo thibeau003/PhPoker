@@ -17,8 +17,11 @@
         $email = $_POST["email"];
         $password = hash("sha256", $_POST["password"]);
 
-        $query = "SELECT `user_id`, `username`, `email`, `balance`, `admin`, `join_date` FROM `tblusers` WHERE `email` = '" . $email . "' AND `password` = '" . $password . "';";
-        $result = $mysqli->query($query);
+        $stmt = $mysqli->prepare("SELECT `user_id`, `username`, `email`, `balance`, `admin`, `join_date` FROM `tblusers` WHERE `email` = ? AND `password` = ?;");
+        $stmt->bind_param('ss', $_POST["email"], $password);
+        $stmt->execute(); 
+        $result = $stmt->get_result();
+
         $row = $result->fetch_assoc();
 
         if (empty($row)) {

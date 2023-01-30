@@ -28,21 +28,6 @@
     <div class="pt-20 text-center text-white absolute inset-x-0 bottom-20">
         <div class="grid grid-cols-3 container mx-auto text-center mb-10">
             <?php
-            if (isset($_POST['higher'])) {
-                if ($_SESSION['higherlower']['deck'][$_SESSION['nextCard']] > $_SESSION['higherlower']['deck'][$_SESSION['currentCard']]) {
-                    echo "true";
-                } else {
-                    header("location: higherlower.php?lost");
-                }
-            }
-            if (isset($_POST['lower'])) {
-                if ($_SESSION['higherlower']['deck'][$_SESSION['nextCard']] < $_SESSION['higherlower']['deck'][$_SESSION['currentCard']]) {
-                    echo "TRUE";
-                } else {
-                    header("location: higherlower.php?lost");
-                }
-            }
-
             if (isset($_POST['startgame'])) {
                 $_SESSION['higherlower']['startgame'] = true;
             }
@@ -115,9 +100,24 @@
                 </div>
                 ' . "Bet: $" . $_SESSION['bet'] . ".00" . '
                 ';
-            if (isset($_POST['nextButton'])) {
-                $_SESSION['user']['balance'] -= $_SESSION['bet'] * 100;
+        }
+
+        if (isset($_POST['nextButton'])) {
+            if (isset($_POST['higher'])) {
+                if ($_SESSION['higherlower']['deck'][$_SESSION['nextCard']] > $_SESSION['higherlower']['deck'][$_SESSION['currentCard']]) {
+                    header("location: index.php");
+                } else {
+                    header("location: index.php");
+                }
             }
+            if (isset($_POST['lower'])) {
+                if ($_SESSION['higherlower']['deck'][$_SESSION['nextCard']] < $_SESSION['higherlower']['deck'][$_SESSION['currentCard']]) {
+                    header("location: index.php");
+                } else {
+                    header("location: index.php");
+                }
+            }
+            $_SESSION['user']['balance'] -= $_SESSION['bet'] * 100;
         }
         ?>
     </div>

@@ -20,9 +20,12 @@ setcookie("currentRow", "", time() + (86400), "/");
 
     <?php
 
-        if(isset($_POST['profit'])){
-            $sql = "UPDATE tblusers SET balance = balance + " . $_POST['profit'] . " WHERE user_id = " . $_SESSION['user']['user_id'];
-            $resultaat = $mysqli->query($sql);
+        if(isset($_POST['profit'])){  
+            $stmt = $mysqli->prepare("UPDATE tblusers SET balance = balance + ? WHERE user_id = ?");
+            $stmt->bind_param('ii', $_POST["profit"], $_SESSION['user']['user_id']);
+            $stmt->execute(); 
+            $result = $stmt->get_result();
+            
             $_SESSION['user']['balance'] += round($_POST['profit'],2);
 
 
@@ -177,9 +180,11 @@ setcookie("currentRow", "", time() + (86400), "/");
                             $_SESSION['user']['balance'] -= $amount;
                             $_SESSION['currentWinningTowers'] = 0;
                             $_SESSION['betTowers'] = $amount;
-    
-                            $sql = "UPDATE tblusers SET balance = balance - " . $amount . " WHERE user_id = " . $_SESSION['user']['user_id'];
-                            $resultaat = $mysqli->query($sql);
+      
+                            $stmt = $mysqli->prepare("UPDATE tblusers SET balance = balance - ? WHERE user_id = ?");
+                            $stmt->bind_param('ii', $amount, $_SESSION['user']['user_id']);
+                            $stmt->execute(); 
+                            $result = $stmt->get_result();
     
                             echo "
                                 <div class='container mx-auto pt-20'>
@@ -327,23 +332,11 @@ setcookie("currentRow", "", time() + (86400), "/");
     
                             for($i = 0; $i < 10; $i++){
                                 $kolomsTowers[$i][rand(0,2)] = 0;
+                                echo $kolomsTowers[$i][2];
                             }
     
                             $_SESSION['currentValuesTowers'] = $kolomsTowers;
                             $_SESSION['currentRowTowers'] = 0;
-                                 
-                            $rowValueTowers = array (
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                            );
 
                             echo "                    
                                 <script>

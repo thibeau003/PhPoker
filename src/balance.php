@@ -31,8 +31,15 @@
         <div class="bg-slate-800 mt-6 rounded-xl w-1/3 mx-auto text-center text-white">
             <?php
             if (isset($_POST['deposit_amount'])) {
-                $sql = "UPDATE tblusers SET balance = balance + " . $_POST['deposit_amount'] * 100 . " WHERE user_id = " . $_SESSION['user']['user_id'];
-                $resultaat = $mysqli->query($sql);
+                $stmt = $mysqli->prepare("UPDATE tblusers SET balance = balance + ? WHERE user_id = ?");
+                $var1 = $_POST['deposit_amount'] * 100;
+                $stmt->bind_param('ii', $var1, $_SESSION['user']['user_id']);
+
+                $stmt->execute();                
+                $resultaat = $stmt->get_result();
+
+                // $sql = "UPDATE tblusers SET balance = balance + " . $_POST['deposit_amount'] * 100 . " WHERE user_id = " . $_SESSION['user']['user_id'];
+                // $resultaat = $mysqli->query($sql);
                 $_SESSION['user']['balance'] = $_SESSION['user']['balance'] + $_POST['deposit_amount'] * 100;
 
                 echo "
@@ -67,8 +74,15 @@
                     exit();
                 }
 
-                $sql = "UPDATE tblusers SET balance = (balance - " . $_POST['withdraw_amount'] * 100 . ") WHERE user_id = " . $_SESSION['user']['user_id'];
-                $resultaat = $mysqli->query($sql);
+                $stmt = $mysqli->prepare("UPDATE tblusers SET balance = balance - ? WHERE user_id = ?");
+                $var1 = $_POST['withdraw_amount'] * 100;
+                $stmt->bind_param('ii', $var1, $_SESSION['user']['user_id']);
+
+                $stmt->execute();                
+                $resultaat = $stmt->get_result();
+
+                // $sql = "UPDATE tblusers SET balance = (balance - " . $_POST['withdraw_amount'] * 100 . ") WHERE user_id = " . $_SESSION['user']['user_id'];
+                // $resultaat = $mysqli->query($sql);
                 $_SESSION['user']['balance'] = $_SESSION['user']['balance'] - $_POST['withdraw_amount'] * 100; 
 
                 echo "

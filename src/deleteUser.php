@@ -17,13 +17,18 @@
         ?>
         <div class="pt-20 text-center text-white">
             <?php
-            $sql = "DELETE FROM tblusers where username ='" . $_GET['gebruiker'] . "'";
-            if ($mysqli->query($sql)) {
+            
+            $stmt = $mysqli->prepare("DELETE FROM tblusers where username ='?'");
+            $var = filter_var($_GET['gebruiker'], FILTER_SANITIZE_NUMBER_INT, FILTER_FLAG_STRIP_HIGH);
+            $stmt->bind_param('i', $var);
+            $stmt->execute(); 
+            $resultaat = $stmt->get_result();
+            if ($resultaat) {
                 print "Record succesfully deleted.";
             } else {
                 print "Error record delete " . $mysqli->error;
             }
-            $mysqli->close();
+
             print "<br><a href='./'> go back to the list of users</a>";
             ?>
         </div>

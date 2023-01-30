@@ -193,6 +193,7 @@ session_start();
               <form method='post' class='flex flex-col gap-2'>
                 <input name='bet' type='number' placeholder='Enter your bet' min='1' required class='bg-slate-700 p-2 w-full rounded' />
                 <button name='startNewGame' class='bg-slate-700 text-center px-4 py-2 rounded'>Start new game</button>
+                <a href='./index.php' class='text-center'>Home</a>
               </form>
             </div>
           </div>

@@ -224,8 +224,8 @@
         </div>
 
         <form action="" class="flex flex-row mx-auto justify-center my-2">
-            <input type="text" name="amount" class="rounded-xl text-black" id="">
-            <input type="submit" class="ml-2 bg-slate-800 rounded-xl py-2 px-4" value="Zet in">
+            <input type="text" name="amount" class="rounded-xl text-black" id="amount">
+            <input type="submit" class="ml-2 bg-slate-800 rounded-xl py-2 px-4" value="Zet in" onclick="inzet()">
         </form>
     </div>
     <?php

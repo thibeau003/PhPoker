@@ -1,20 +1,21 @@
 let huidigeGetal;
 let inzegetal;
 
-import { canvas } from "./rouletteJona";
-
 
 function voorbeeld(getal){
-   alert(getal); 
-
    huidigeGetal = getal;
-
+   console.log(getal);
+   document.cookie = "number="+huidigeGetal;
+   
 }
    
 function inzet(){
+   //document.cookie = "number = 0; expires=Thu, 01 Jan 1970 00:00:00 GMT;";
    const waarde = document.getElementById("amount").value;
    inzegetal = waarde;
-   alert(canvas);
-   document.write(canvas);
+   console.log(inzegetal);
 
+}
+function winstberekening(getal, inzegetal){
+   if
 }

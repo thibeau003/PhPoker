@@ -227,11 +227,25 @@
         </form>
     </div>
     <div>
-        <button type="submit" id='spin' class="p-1 mb-4 w-1/2 bg-slate-800 text-white rounded-xl" onclick="inzet()">Start game</button>
-    </div>
+        <?php
+        echo $_COOKIE['number'];
+        if (($_COOKIE['number'] = "")) {
+            echo "saus";
+            header('location: roulette.php?geenlogin');
+        } else {
+            echo "kkak";
+        ?><button type="submit" id='spin' class="p-1 mb-4 w-1/2 mt-6 flex flex-row mx-auto justify-center  bg-slate-800 text-white rounded-xl" onclick="inzet()">Start game</button>
+        <?php
+        }
+        ?>
 
+    </div>
     <script src="rouletteJona.js"></script>
-    <script scr="roulette.js"></script>
+    <?php
+    if (isset($_GET['geenlogin'])) {
+        echo "<div class='flex' justify-center items-center mt- text-red-500'>Foute inloggevens</div>";
+    }
+    ?>
 </body>
 
 </html>

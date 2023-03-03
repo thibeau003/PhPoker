@@ -65,6 +65,10 @@ if (isset($_SESSION["user"])) {
                                 <li>
                                     <a href='./headsortails.php' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Heads or tails</a>
                                 </li>
+                                <li>
+                                    <a href='./roulette.php' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0'>Roulette</a>
+                                </li>
+                                
                             </ul>
                         </div>
                     </div>
@@ -109,6 +113,10 @@ if (isset($_SESSION["user"])) {
                                 <li>
                                     <a href='./headsortails.php' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0 '>Heads or tails</a>
                                 </li>
+                                <li>
+                                    <a href='./roulette.php' class='block py-2 pr-4 pl-3 text-white lg:border-0 lg:p-0 '>Roulette</a>
+                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -124,4 +132,3 @@ echo "
         }
     </script>
 ";
-?>

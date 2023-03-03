@@ -1,24 +1,20 @@
-function voorbeeld(getal){
-    const waarde = document.getElementById("amount").value;
-    const lijstVanGeselecteerden = [];
-    lijstVanGeselecteerden.push(getal);
-    console.log(lijstVanGeselecteerden);
+let huidigeGetal;
+let inzegetal;
 
-   }
+import { canvas } from "./rouletteJona";
+
+
+function voorbeeld(getal){
+   alert(getal); 
+
+   huidigeGetal = getal;
+
+}
    
 function inzet(){
    const waarde = document.getElementById("amount").value;
-   const lijstVanInzetten = [];
-   lijstVanInzetten.push(waarde);
-   //document.cookie = `lijst=${lijstVanInzetten}`;
-   //let s = document.cookie;
-   toonLijst(lijstVanInzetten);
-}
+   inzegetal = waarde;
+   alert(canvas);
+   document.write(canvas);
 
-function toonLijst(lijst){
-   s = lijst;
-   for(let i = 0; i < s.length; i++){
-      console.log(s[i])
-   }
-   
 }

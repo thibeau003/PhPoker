@@ -12,7 +12,6 @@
 <body class="bg-slate-700">
     <?php
     include "./header.php";
-    $getal = 20;
 
     $selectedBets = array(
         array(),
@@ -224,27 +223,15 @@
         </div>
 
         <form action="" class="flex flex-row mx-auto justify-center my-2">
-            <input type="text" name="amount" class="rounded-xl text-black" id="amount">
-            <input type="button" class="ml-2 bg-slate-800 rounded-xl py-2 px-4" value="Zet in" onclick="inzet()">
+            <input type="number" name="amount" class="rounded-xl text-black" id="amount" required>
         </form>
     </div>
-    <?php
-    echo $getal;
-    function addPrice()
-    {
-        $tussenmatrix = ['name'][$_POST['amount']];
-        //$ex = [{"key": "value"}]
-        $selectedBets = $tussenmatrix;
-        echo $tussenmatrix;
-    }
-    echo $tussenmatrix;
-    ?>
     <div>
-
-        <button type="submit" id='spin' class="p-1 mb-4 w-1/2 bg-slate-800 rounded-xl">Start game</button>
+        <button type="submit" id='spin' class="p-1 mb-4 w-1/2 bg-slate-800 text-white rounded-xl" onclick="inzet()">Start game</button>
     </div>
 
     <script src="rouletteJona.js"></script>
+    <script scr="roulette.js"></script>
 </body>
 
 </html>

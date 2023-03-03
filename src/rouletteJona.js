@@ -71,6 +71,7 @@ function drawRouletteWheel() {
     ctx.fill();
   }
 }
+export {canvas};
 
 function spin() {
   spinAngleStart = Math.random() * 10 + 10;
@@ -111,3 +112,4 @@ function easeOut(t, b, c, d) {
 }
 
 drawRouletteWheel();
+

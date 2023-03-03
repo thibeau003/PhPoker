@@ -36,17 +36,12 @@
             $amount = intval($_SESSION['amount']);
         }
         if (isset($amount) && is_int($amount) && !empty($amount)) {
+            $_SESSION['mines']['bet'] = $amount;
             if (isset($_POST['stopgame'])) {
                 $stmt = $mysqli->prepare("UPDATE tblusers SET balance = balance + ? WHERE user_id = ?");
                 $stmt->bind_param('ii', $_POST['profit'], $_SESSION['user']['user_id']);
-                $stmt->execute(); 
+                $stmt->execute();
                 $result = $stmt->get_result();
-
-                $_SESSION['user']['balance'] += round($_POST['profit'], 2);
-                print "test";
-                $sql = "UPDATE tblusers SET balance = balance + " . $_SESSION['mines']['bet'] . " WHERE user_id = " . $_SESSION['user']['user_id'];
-                $resultaat = $mysqli->query($sql);
-                $_SESSION['user']['balance'] += round($_SESSION['mines']['bet'], 2);
             }
             echo "
     <div class='container mx-auto pt-20'>
@@ -167,7 +162,7 @@
                             </div>
                         </div>    
                     
-                    <input type='submit' value='stop Game' id='stopgame' class='w-full cursor-pointer py-2 mt-2 bg-slate-800 rounded text-white'>
+                    <input type='submit' value='Current winnings: $" . $_SESSION['mines']['bet'] . "' id='stopgame' class='w-full cursor-pointer py-2 mt-2 bg-slate-800 rounded text-white'>
                 </form>
             </div>
         </div>
@@ -178,12 +173,12 @@
             if (isset($amount) && !empty($amount)) {
                 $_SESSION['mines']['bet'] = $amount * 100;
                 if ($_SESSION['mines']['bet'] <= $_SESSION['user']['balance']) {
-                    $stmt = $mysqli->prepare("UPDATE tblusers SET balance = balance - ? WHERE user_id = ?");
+                    $stmt = $mysqli->prepare("UPDATE tblusers SET balance = balance + ? WHERE user_id = ?");
                     $stmt->bind_param('ii', $_SESSION['mines']['bet'], $_SESSION['user']['user_id']);
-                    $stmt->execute(); 
+                    $stmt->execute();
                     $result = $stmt->get_result();
 
-                    $_SESSION['user']['balance'] = $_SESSION['user']['balance'] - $_SESSION['mines']['bet'];
+                    $_SESSION['user']['balance'] = $_SESSION['user']['balance'] + $_SESSION['mines']['bet'];
                     echo "
             <script>
                 $.ajax(
@@ -211,44 +206,40 @@
                             document.getElementById(i).disabled = true;
                         }
                         clickedButton.style.backgroundColor = '#990000'
-                        document.getElementById('profit').value = 0
+                        document.getElementById('winning').value = _SESSION[amount]
                         document.getElementById('stopgame').value = 'Game Over'
 
-                    } else {
+                    } else if (valuesButton[clickedButton.id] == 'Win') {
                         clickedButton.disabled = true;
                         clickedButton.style.backgroundColor = '#005900'
 
-                        if (isset($_SESSION['amount'])) {
-                            if (!empty($_POST['amount'])) {
-                                $winning = 0;
-                            }
+                        if (typeof _SESSION['amount'] !== 'undefined') {
                             if ($_SESSION['bombAmount'] == '3') {
                                 $winning = $_SESSION['mines']['bet'] * 1.08;
                                 $_SESSION['mines']['bet'] += $winning;
-                    
+
                             } else if ($_SESSION['bombAmount'] == '5') {
                                 $winning = $_SESSION['mines']['bet'] * 1.16;
                                 $_SESSION['mines']['bet'] += $winning;
-                    
+
                             } else if ($_SESSION['bombAmount'] = '10') {
                                 $winning = $_SESSION['mines']['bet'] * 1.70;
                                 $_SESSION['mines']['bet'] += $winning;
-                    
+
                             } else if ($_SESSION['bombAmount'] = '20') {
                                 $winning = $_SESSION['mines']['bet'] * 3;
                                 $_SESSION['mines']['bet'] += $winning;
-                    
+
                             }
                         }
+                    } else {
+                        $winning = 0;
+                        console.log("succes");
                     }
                 }
             </script>
 
     <?php
-            if (isset($_SESSION['amount'])) {
-                
-                
-            }
         } else {
             echo "
     <div class='container mx-auto pt-20'>

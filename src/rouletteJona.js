@@ -80,9 +80,10 @@ function spin() {
 }
 
 function rotateWheel() {
-  spinTime += 30;
+  spinTime += 1000;
   if(spinTime >= spinTimeTotal) {
     stopRotateWheel();
+    winstberekening();
     return;
   }
   var spinAngle = spinAngleStart - easeOut(spinTime, 0, spinAngleStart, spinTimeTotal);
@@ -99,8 +100,9 @@ function stopRotateWheel() {
   ctx.save();
   ctx.font = 'bold 30px Helvetica, Arial';
   ctx.fillStyle = "white";
-  var text = options[index]
+  text = options[index]
   ctx.fillText(text, 250 - ctx.measureText(text).width / 2, 250 + 10);
+  console.log(text);
   ctx.restore();
 }
 
@@ -111,4 +113,26 @@ function easeOut(t, b, c, d) {
 }
 
 drawRouletteWheel();
+let getrokkenGetal;
+let huidigeGetal;
+let inzetgetal;
+let text;
 
+
+function voorbeeld(getal){
+   huidigeGetal = getal;
+   console.log(getal);
+   document.cookie = "number="+huidigeGetal;
+   
+}
+   
+function inzet(){
+   //document.cookie = "number = 0; expires=Thu, 01 Jan 1970 00:00:00 GMT;";
+   const waarde = document.getElementById("amount").value;
+   inzetgetal = waarde;
+   console.log(inzetgetal);
+
+}
+function winstberekening(huidigeGetal, inzetgetal, text){
+   console.log(text);
+}

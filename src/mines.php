@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PhPoker | Mines</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 </head>
 
 <body class="bg-slate-700">
@@ -168,6 +169,7 @@
         </div>
     </div>
         ";
+        $bet= $_SESSION['mines']['bet'];
     ?>
             <?php
             if (isset($amount) && !empty($amount)) {
@@ -196,7 +198,7 @@
             }
             ?>
             <script>
-                function onClick(ButtonId) {
+                function onClick(ButtonId, Amount ) {
                     const clickedButton = document.getElementById(ButtonId)
                     const valuesButton = <?php echo json_encode($_SESSION['mines']) ?>
 
@@ -204,16 +206,17 @@
 
                         for (let i = 0; i < valuesButton.length; i++) {
                             document.getElementById(i).disabled = true;
+                            console.log ("test")
                         }
                         clickedButton.style.backgroundColor = '#990000'
-                        document.getElementById('winning').value = _SESSION[amount]
+                        document.getElementById(<?php echo $_SESSION['amount']?>).value =  0
                         document.getElementById('stopgame').value = 'Game Over'
 
                     } else if (valuesButton[clickedButton.id] == 'Win') {
                         clickedButton.disabled = true;
                         clickedButton.style.backgroundColor = '#005900'
 
-                        if (typeof _SESSION['amount'] !== 'undefined') {
+                        if (typeof _SESSION[amount] !== 'undefined') {
                             if ($_SESSION['bombAmount'] == '3') {
                                 $winning = $_SESSION['mines']['bet'] * 1.08;
                                 $_SESSION['mines']['bet'] += $winning;

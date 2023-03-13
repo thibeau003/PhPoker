@@ -220,7 +220,7 @@
                             if (<?php echo $_SESSION['bombAmount']?> == 3) {
                                 <?php echo $_SESSION['mines']['bet']?> == <?php echo $_SESSION['mines']['bet']?> * 1.08;
 
-                            } else if (<?php echo $_SESSION['bombAmount']?>== 5) {
+                            } else if (<?php echo $_SESSION['bombAmount']?> == 5) {
                                 <?php echo $_SESSION['mines']['bet']?> ==  <?php echo $_SESSION['mines']['bet']?> * 1.16;
 
                             } else if (<?php echo $_SESSION['bombAmount']?> == 10) {

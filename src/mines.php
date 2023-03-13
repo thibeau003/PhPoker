@@ -39,7 +39,7 @@
         if (isset($amount) && is_int($amount) && !empty($amount)) {
             $_SESSION['mines']['bet'] = $amount;
             if (isset($_POST['stopgame'])) {
-                $stmt = $mysqli->prepare("UPDATE tblusers SET balance = balance + ? WHERE user_id = ?");
+                $stmt = $mysqli->prepare("UPDATE tblusers SET balance = balance - ? WHERE user_id = ?");
                 $stmt->bind_param('ii', $_POST['profit'], $_SESSION['user']['user_id']);
                 $stmt->execute();
                 $result = $stmt->get_result();
@@ -175,12 +175,12 @@
             if (isset($amount) && !empty($amount)) {
                 $_SESSION['mines']['bet'] = $amount * 100;
                 if ($_SESSION['mines']['bet'] <= $_SESSION['user']['balance']) {
-                    $stmt = $mysqli->prepare("UPDATE tblusers SET balance = balance + ? WHERE user_id = ?");
+                    $stmt = $mysqli->prepare("UPDATE tblusers SET balance = balance - ? WHERE user_id = ?");
                     $stmt->bind_param('ii', $_SESSION['mines']['bet'], $_SESSION['user']['user_id']);
                     $stmt->execute();
                     $result = $stmt->get_result();
 
-                    $_SESSION['user']['balance'] = $_SESSION['user']['balance'] + $_SESSION['mines']['bet'];
+                    $_SESSION['user']['balance'] = $_SESSION['user']['balance'] - $_SESSION['mines']['bet'];
                     echo "
             <script>
                 $.ajax(
@@ -201,6 +201,7 @@
                 function onClick(ButtonId, Amount ) {
                     const clickedButton = document.getElementById(ButtonId)
                     const valuesButton = <?php echo json_encode($_SESSION['mines']) ?>
+                    
 
                     if (valuesButton[clickedButton.id] == 'Bom') {
 
@@ -215,30 +216,24 @@
                         clickedButton.disabled = true;
                         clickedButton.style.backgroundColor = '#005900'
 
-                        if (typeof _SESSION[amount] !== 'undefined') {
-                            if ($_SESSION['bombAmount'] == '3') {
-                                $winning = $_SESSION['mines']['bet'] * 1.08;
-                                $_SESSION['mines']['bet'] += $winning;
+                        
+                            if (<?php echo $_SESSION['bombAmount']?> == 3) {
+                                <?php echo $_SESSION['mines']['bet']?> == <?php echo $_SESSION['mines']['bet']?> * 1.08;
 
-                            } else if ($_SESSION['bombAmount'] == '5') {
-                                $winning = $_SESSION['mines']['bet'] * 1.16;
-                                $_SESSION['mines']['bet'] += $winning;
+                            } else if (<?php echo $_SESSION['bombAmount']?>== 5) {
+                                <?php echo $_SESSION['mines']['bet']?> ==  <?php echo $_SESSION['mines']['bet']?> * 1.16;
 
-                            } else if ($_SESSION['bombAmount'] = '10') {
-                                $winning = $_SESSION['mines']['bet'] * 1.70;
-                                $_SESSION['mines']['bet'] += $winning;
+                            } else if (<?php echo $_SESSION['bombAmount']?> == 10) {
+                                <?php echo $_SESSION['mines']['bet']?> == <?php echo $_SESSION['mines']['bet']?> * 1.70;
 
-                            } else if ($_SESSION['bombAmount'] = '20') {
-                                $winning = $_SESSION['mines']['bet'] * 3;
-                                $_SESSION['mines']['bet'] += $winning;
+                            } else if (<?php echo $_SESSION['bombAmount']?> == 20) {
+                                <?php echo $_SESSION['mines']['bet']?> ==  <?php echo $_SESSION['mines']['bet']?> * 3;
 
                             }
-                        }
-                    } else {
-                        $winning = 0;
-                        console.log("succes");
-                    }
+                        
+                    
                 }
+            }
             </script>
 
     <?php

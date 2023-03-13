@@ -204,9 +204,8 @@
 
                     if (valuesButton[clickedButton.id] == 'Bom') {
 
-                        for (let i = 0; i < valuesButton.length; i++) {
+                        for (let i = 0; i < 25; i++) {
                             document.getElementById(i).disabled = true;
-                            console.log ("test")
                         }
                         clickedButton.style.backgroundColor = '#990000'
                         document.getElementById(<?php echo $_SESSION['amount']?>).value =  0
